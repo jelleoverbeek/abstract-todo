@@ -2,6 +2,23 @@
 
 {% block content %}
 
-<h1>INdex</h1>
+<h1>Index</h1>
+
+{% for project in data %}
+
+  <h2><a target="_blank" href="https://app.goabstract.com/projects/{{ project.info.id }}">{{ project.info.name }}</a></h2>
+
+  <ul>
+  {% for comment in project.comments %}
+    <li>
+      <img class="avatar" src="{{ comment.user.avatarUrl }}" title="{{ comment.user.name }}"> 
+      <a target="_blank" href="https://app.goabstract.com/projects/{{ comment.projectId }}/branches/{{ comment.branchId }}/commits/{{ comment.commitSha }}/files/{{ comment.fileId }}/layers/{{ comment.layerId }}?mode=design">{{ comment.body }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+
+{% endfor %}
+
+
 
 {% endblock %}

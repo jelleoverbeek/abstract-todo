@@ -24,46 +24,77 @@ const abstract = Abstract.Client();
 
 const theProjects = [];
 
-async function run() {
+async function getAllProjects() {
   // Query all projects
   const projects = await abstract.projects.list().catch(error => {
     console.log(error);
   });
 
-  // Iterate through each project
-  for (const project of projects) {
-    let projectObj = {
-      info: project,
-      comments: []
-    };
-
-    const comments = await abstract.comments
-      .list({
-        projectId: project.id
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    for (const comment of comments) {
-      console.log(comment);
-      projectObj.comments.push(comment);
-    }
-
-    theProjects.push(projectObj);
-  }
-  //     console.log(comment);
-  // }
+  return projects;
 }
 
-run().catch(error => {
-  console.log(error);
-});
+async function getComments(projectId) {
+  const comments = await abstract.comments
+    .list({
+      projectId: projectId
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+  return comments;
+}
+
+function filterByProjectId(projectId) {
+  return function(project) {
+    if (project.id === projectId) {
+      return true;
+    }
+    return false;
+  };
+}
+
+async function getProject(projectId) {
+  // it is not possible to retrieve a single project yet. So we filter the one we want
+  let projects = await abstract.projects.list().catch(error => {
+    console.log(error);
+  });
+
+  projects = projects.filter(filterByProjectId(projectId));
+
+  return projects;
+}
 
 app.get("/", function(req, res) {
-  res.render("index.html", {
-    data: theProjects
+  getAllProjects().then(projects => {
+    res.render("index.html", {
+      data: projects
+    });
   });
+});
+
+app.get("/project/:projectId", function(req, res) {
+  const projectId = req.params.projectId;
+
+  let project = getProject(projectId);
+  let comments = getComments(projectId);
+
+  Promise.all([project, comments])
+    .then(function(values) {
+      const projectData = {
+        info: values[0][0],
+        comments: values[1]
+      };
+
+      console.log(projectData);
+
+      res.render("project.html", {
+        project: projectData
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 http.listen(port, function() {

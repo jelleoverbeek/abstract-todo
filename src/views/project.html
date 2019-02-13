@@ -1,0 +1,24 @@
+{% extends "components/_layout.html" %}
+
+{% block content %}
+
+  <a href="/">Back to projects</a>
+
+  <h1>{{ project.info.name }} - comments</h1>
+
+
+  {% if project.comments.length %}
+    <ul class="comments">
+    {% for comment in project.comments %}
+      <li>
+        <img class="avatar" src="{{ comment.user.avatarUrl }}" title="{{ comment.user.name }}"> 
+        <p>{{ comment.body }}</p>
+        <a target="_blank" href="https://app.goabstract.com/projects/{{ comment.projectId }}/branches/{{ comment.branchId }}/commits/{{ comment.commitSha }}/files/{{ comment.fileId }}/layers/{{ comment.layerId }}?mode=design">Open in app</a>
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    No comments found
+  {% endif %}
+
+{% endblock %}

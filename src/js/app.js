@@ -1,13 +1,19 @@
 console.log("app.js loaded");
 
 const { getAllProjects, getComments } = require("./abstract");
+const { createProjectElement } = require("./projects");
 
-getAllProjects().then(projects => {
-  console.log(projects);
+const main = document.querySelector("main");
 
-  projects.forEach(project => {
-    const comments = getComments(project.id);
+function init() {
+  getAllProjects().then(projects => {
+    console.log(projects);
 
-    console.log(comments);
+    projects.forEach(project => {
+      const projectElement = createProjectElement(project);
+      main.insertAdjacentElement("beforeend", projectElement);
+    });
   });
-});
+}
+
+init();

@@ -9,7 +9,7 @@ class ApiTokenForm extends React.Component {
         <h2>API Token</h2>
         <p>
           To access your projects you need to create and supply an API token. You can do this by going to the{" "}
-          <a target="_blank" href="https://app.goabstract.com/account/tokens">
+          <a target="_blank" href="https://app.goabstract.com/account/tokens" rel="noopener noreferrer">
             API Tokens
           </a>{" "}
           section in your Personal Settings of Abstract. The token will be stored locally. div.

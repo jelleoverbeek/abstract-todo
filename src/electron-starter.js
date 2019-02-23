@@ -1,4 +1,11 @@
+require("dotenv").config();
 const electron = require("electron");
+const { getAllProjects, getComments } = require("./abstract");
+
+getAllProjects().then(projects => {
+  console.log(projects);
+});
+
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
@@ -13,7 +20,14 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1280, height: 800, titleBarStyle: "hiddenInset" });
+  mainWindow = new BrowserWindow({
+    width: 1280,
+    height: 800,
+    titleBarStyle: "hiddenInset",
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
 
   // and load the index.html of the app.
   const startUrl =

@@ -1,6 +1,6 @@
 require("dotenv").config();
 const Abstract = require("abstract-sdk");
-const abstract = Abstract.Client();
+const abstract = new Abstract.Client();
 
 const getAllProjects = async function() {
   // Query all projects

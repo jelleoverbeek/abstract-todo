@@ -8,9 +8,10 @@
     "react-scripts": "2.1.5"
   },
   "dependencies": {
+    "abstract-sdk": "^1.0.0-beta.3",
+    "dotenv": "^6.2.0",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "dotenv": "^6.2.0"
+    "react-dom": "^16.8.2"
   },
   "homepage": "./",
   "main": "src/electron-starter.js",

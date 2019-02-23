@@ -1,0 +1,8 @@
+.form--api-token {
+  display: flex;
+  margin-top: 16px;
+}
+
+.form--api-token button {
+  margin-left: 16px;
+}

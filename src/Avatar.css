@@ -1,0 +1,8 @@
+.Avatar {
+  border-radius: 50%;
+}
+
+.Avatar--24 {
+  width: 24px;
+  height: 24px;
+}

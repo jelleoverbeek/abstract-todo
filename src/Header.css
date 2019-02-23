@@ -1,0 +1,9 @@
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+  text-align: right;
+}
+
+header button {
+  margin-left: 8px;
+}

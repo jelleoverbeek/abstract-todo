@@ -1,0 +1,31 @@
+.ProjectsMenu {
+  padding: 32px;
+  border-right: 1px solid var(--border);
+  max-width: 336px;
+  height: calc(100vh - 66px);
+  overflow-y: auto;
+}
+
+.ProjectsMenu ul {
+  padding: 0;
+  list-style: none;
+}
+
+.MenuItem {
+  background-color: var(--item);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 16px;
+  width: 100%;
+  margin-top: 8px;
+  height: 56px;
+  color: var(--white-80);
+}
+
+.MenuItem img {
+  margin-left: 16px;
+}

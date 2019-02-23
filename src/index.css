@@ -1,0 +1,18 @@
+:root {
+  --background: #010711;
+  --border: #222731;
+  --white: #ffffff;
+  --white-80: rgba(255, 255, 255, 0.8);
+  --white-60: rgba(255, 255, 255, 0.6);
+  --white-50: rgba(255, 255, 255, 0.6);
+  --blue: #0055ff;
+  --red: #b31a00;
+  --item: #121821;
+  --button: #1c212a;
+  --button-hover: #2d3540;
+  --border-radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}

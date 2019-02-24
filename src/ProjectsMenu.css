@@ -26,6 +26,13 @@
   color: var(--white-80);
 }
 
+.MenuItem span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
 .MenuItem img {
   margin-left: 16px;
 }

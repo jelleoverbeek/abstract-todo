@@ -2,15 +2,17 @@ import React from "react";
 import "./Button.css";
 import "./ProjectsMenu.css";
 import Avatar from "./Avatar";
-import ProjectsData from "./db/projects.json";
+
+let db = window.require("diskdb");
+db = db.connect("./src/db", ["projects", "branches"]);
 
 class MenuItem extends React.Component {
   render() {
     return (
       <li>
         <button className="MenuItem">
-          {this.props.name}
-          <Avatar url={this.props.avatarUrl} name={this.props.author} />
+          <span>{this.props.name}</span>
+          <Avatar userId={this.props.userId} />
         </button>
       </li>
     );
@@ -19,13 +21,14 @@ class MenuItem extends React.Component {
 
 class Project extends React.Component {
   render() {
+    const branchesData = db.branches.find({ projectId: this.props.id });
     return (
       <div className="Project">
         <h6>{this.props.name}</h6>
         <ul>
-          <MenuItem name="Success celebration" avatarUrl="https://jelle.im/assets/img/avatar@2x.png" author="Jelle Overbeek" />
-          <MenuItem name="Success celebration" avatarUrl="https://jelle.im/assets/img/avatar@2x.png" author="Jelle Overbeek" />
-          <MenuItem name="Master" />
+          {branchesData.map((branch, index) => {
+            return <MenuItem key={index} name={branch.name} userId={branch.userId} />;
+          })}
         </ul>
       </div>
     );
@@ -34,11 +37,13 @@ class Project extends React.Component {
 
 class ProjectsMenu extends React.Component {
   render() {
+    const projectsData = db.projects.find();
+
     return (
       <aside className="ProjectsMenu">
         <h2>Projects</h2>
-        {ProjectsData.map((project, index) => {
-          return <Project name={project.name} />;
+        {projectsData.map((project, index) => {
+          return <Project key={index} name={project.name} id={project.id} />;
         })}
       </aside>
     );

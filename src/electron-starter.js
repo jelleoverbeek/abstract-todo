@@ -1,29 +1,53 @@
 require("dotenv").config();
 const electron = require("electron");
-const { getAllProjects, getComments } = require("./abstract");
+const { getAllProjects, getComments, getBranches, getOrganizations, getUsers } = require("./abstract");
 const path = require("path");
 const url = require("url");
 
 var db = require("diskdb");
-db = db.connect("./src/db", ["projects", "comments"]);
+db = db.connect("./src/db", ["projects", "comments", "branches", "users"]);
 
-getAllProjects()
-  .then(projects => {
-    projects.forEach(project => {
-      db.projects.save(project);
+// getOrganizations()
+//   .then(organizations => {
+//     organizations.forEach(organization => {
+//       getUsers(organization.id)
+//         .then(users => {
+//           console.log(users);
+//         })
+//         .catch(error => {
+//           console.log(error);
+//         });
+//     });
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
 
-      getComments(project.id)
-        .then(comments => {
-          db.comments.save(comments);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    });
-  })
-  .catch(error => {
-    console.log(error);
-  });
+// getAllProjects()
+//   .then(projects => {
+//     projects.forEach(project => {
+//       db.projects.save(project);
+
+// getComments(project.id)
+//   .then(comments => {
+//     db.comments.save(comments);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
+
+//     getBranches(project.id)
+//       .then(branches => {
+//         db.branches.save(branches);
+//       })
+//       .catch(error => {
+//         console.log(error);
+//       });
+//   });
+// })
+// .catch(error => {
+//   console.log(error);
+// });
 
 // Module to control application life.
 const app = electron.app;
@@ -41,6 +65,7 @@ function createWindow() {
     height: 800,
     titleBarStyle: "hiddenInset",
     webPreferences: {
+      webSecurity: false,
       nodeIntegration: true
     }
   });

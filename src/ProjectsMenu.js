@@ -2,6 +2,7 @@ import React from "react";
 import "./Button.css";
 import "./ProjectsMenu.css";
 import Avatar from "./Avatar";
+import ProjectsData from "./db/projects.json";
 
 class MenuItem extends React.Component {
   render() {
@@ -36,11 +37,9 @@ class ProjectsMenu extends React.Component {
     return (
       <aside className="ProjectsMenu">
         <h2>Projects</h2>
-        <Project name="My Listings" />
-        <Project name="Cart" />
-        <Project name="Cart" />
-        <Project name="Cart" />
-        <Project name="Cart" />
+        {ProjectsData.map((project, index) => {
+          return <Project name={project.name} />;
+        })}
       </aside>
     );
   }

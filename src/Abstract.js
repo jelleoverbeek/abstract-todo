@@ -12,13 +12,9 @@ const getAllProjects = async function() {
 };
 
 const getComments = async function(projectId) {
-  const comments = await abstract.comments
-    .list({
-      projectId: projectId
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  const comments = await abstract.comments.list({
+    projectId: projectId
+  });
 
   return comments;
 };

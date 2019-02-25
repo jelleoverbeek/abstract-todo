@@ -1,0 +1,29 @@
+.Comment {
+  display: flex;
+  background-color: var(--item);
+  padding: 24px;
+  border-radius: var(--border-radius);
+}
+
+.Comment header {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+}
+
+.Comment address {
+  font-style: normal;
+}
+
+.Comment form {
+  padding-right: 24px;
+}
+
+.Comment p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.Comment time {
+  color: var(--white-60);
+}

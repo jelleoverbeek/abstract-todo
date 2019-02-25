@@ -2,6 +2,7 @@
   padding: 32px;
   border-right: 1px solid var(--border);
   max-width: 336px;
+  min-width: 300px;
   height: calc(100vh - 66px);
   overflow-y: auto;
 }

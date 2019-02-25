@@ -5,7 +5,7 @@ import IconButton from "./IconButton";
 class Header extends React.Component {
   render() {
     return (
-      <header>
+      <header className="Header">
         <IconButton text="Sync" />
         <IconButton text="Settings" />
       </header>

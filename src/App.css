@@ -60,9 +60,39 @@ input {
   width: 100%;
 }
 
+input[type="checkbox"] {
+  -webkit-appearance: none; /* Hides the default checkbox style */
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--blue);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-image: url("./img/checkmark.svg");
+  background-size: contain;
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:focus {
+  outline: 0;
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 0 4px rgba(0, 85, 255, 0.3);
+}
+
 .input--big {
   height: 56px;
   font-size: 1rem;
+}
+
+.splitview {
+  display: flex;
+}
+
+main {
+  width: 100%;
 }
 
 .container--small {

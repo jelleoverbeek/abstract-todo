@@ -1,2 +1,7 @@
 .Comments {
+  padding: 32px 40px;
+}
+.Comments ul {
+  padding: 0;
+  list-style: none;
 }

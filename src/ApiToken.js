@@ -5,7 +5,7 @@ import "./ApiToken.css";
 class ApiTokenForm extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container--small">
         <h2>API Token</h2>
         <p>
           To access your projects you need to create and supply an API token. You can do this by going to the{" "}

@@ -1,11 +1,11 @@
-header {
+.Header {
   border-bottom: 1px solid var(--border);
   padding: 12px;
   text-align: right;
   -webkit-app-region: drag;
 }
 
-header button {
+.Header button {
   margin-left: 8px;
   -webkit-app-region: no-drag;
 }

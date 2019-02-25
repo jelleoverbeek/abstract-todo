@@ -1,0 +1,12 @@
+.SideMenu {
+  padding: 32px;
+  border-right: 1px solid var(--border);
+  max-width: 336px;
+  height: calc(100vh - 66px);
+  overflow-y: auto;
+}
+
+.SideMenu ul {
+  padding: 0;
+  list-style: none;
+}

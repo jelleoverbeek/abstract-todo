@@ -93,6 +93,7 @@ input[type="checkbox"]:focus {
 
 main {
   width: 100%;
+  padding: 40px;
 }
 
 .container--small {

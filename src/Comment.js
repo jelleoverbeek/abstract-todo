@@ -22,7 +22,7 @@ class Comment extends React.Component {
           <header>
             <Avatar userId={this.props.userId} />
             <address rel="author">{this.props.author}</address>
-            <time datetime={this.props.date}>&nbsp;—&nbsp;{this.props.date}</time>
+            <time dateTime={this.props.date}>&nbsp;—&nbsp;{this.props.date}</time>
           </header>
           <p>{this.props.body}</p>
         </div>

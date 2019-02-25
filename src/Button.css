@@ -1,4 +1,5 @@
-button {
+button,
+.button {
   border: none;
   color: var(--white);
   background-color: var(--button);
@@ -9,7 +10,8 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover,
+.button {
   background-color: var(--button-hover);
 }
 

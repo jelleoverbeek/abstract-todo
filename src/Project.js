@@ -30,7 +30,7 @@ class Project extends React.Component {
         <h6>{this.props.name}</h6>
         <ul>
           {this.state.branches.map((branch, index) => {
-            return <MenuItem key={index} name={branch.name} userId={branch.userId} />;
+            return <MenuItem key={index} name={branch.name} userId={branch.userId} projectId={this.props.id} />;
           })}
         </ul>
       </div>

@@ -2,23 +2,25 @@ import React from "react";
 import "./Comments.css";
 import { getComments } from "./AbstractFunctions";
 import Comment from "./Comment";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 
 class Comments extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      projectId: "",
-      comments: []
-    };
-  }
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 
   componentDidMount() {}
 
   render() {
+    const { match, location, history } = this.props;
+
     return (
       <div className="Comments">
-        <h2>{this.props.branchName}</h2>
-
+        {/* <h2>{this.props.branchName}</h2> */}
+        <h3>{match.params.projectId}</h3>
         <ul>
           <Comment
             id="154815081580"

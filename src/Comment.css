@@ -1,7 +1,6 @@
 .Comment {
   display: flex;
   background-color: var(--item);
-  padding: 24px;
   border-radius: var(--border-radius);
 }
 

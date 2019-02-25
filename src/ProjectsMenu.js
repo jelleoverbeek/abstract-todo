@@ -2,9 +2,7 @@ import React from "react";
 import "./Button.css";
 import "./ProjectsMenu.css";
 import Avatar from "./Avatar";
-
-let db = window.require("diskdb");
-db = db.connect("./src/db", ["projects", "branches"]);
+import { getAllProjects, getBranches } from "./AbstractFunctions";
 
 class MenuItem extends React.Component {
   render() {
@@ -20,13 +18,32 @@ class MenuItem extends React.Component {
 }
 
 class Project extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      branches: []
+    };
+  }
+
+  componentDidMount() {
+    getBranches(this.props.id)
+      .then(branches => {
+        console.log(branches);
+        this.setState({
+          branches: branches
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
-    const branchesData = db.branches.find({ projectId: this.props.id });
     return (
       <div className="Project">
         <h6>{this.props.name}</h6>
         <ul>
-          {branchesData.map((branch, index) => {
+          {this.state.branches.map((branch, index) => {
             return <MenuItem key={index} name={branch.name} userId={branch.userId} />;
           })}
         </ul>
@@ -36,13 +53,31 @@ class Project extends React.Component {
 }
 
 class ProjectsMenu extends React.Component {
-  render() {
-    const projectsData = db.projects.find();
+  constructor(props) {
+    super(props);
+    this.state = {
+      projects: []
+    };
+  }
 
+  componentDidMount() {
+    getAllProjects()
+      .then(projects => {
+        console.log(projects);
+        this.setState({
+          projects: projects
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  render() {
     return (
       <aside className="ProjectsMenu">
         <h2>Projects</h2>
-        {projectsData.map((project, index) => {
+        {this.state.projects.map((project, index) => {
           return <Project key={index} name={project.name} id={project.id} />;
         })}
       </aside>

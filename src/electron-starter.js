@@ -1,11 +1,11 @@
 require("dotenv").config();
 const electron = require("electron");
-const { getAllProjects, getComments, getBranches, getOrganizations, getUsers } = require("./abstract");
+// const { getAllProjects, getComments, getBranches, getOrganizations, getUsers } = require("./abstract");
 const path = require("path");
 const url = require("url");
 
-var db = require("diskdb");
-db = db.connect("./src/db", ["projects", "comments", "branches", "users"]);
+// var db = require("diskdb");
+// db = db.connect("./src/db", ["projects", "comments", "branches", "users"]);
 
 // getOrganizations()
 //   .then(organizations => {
@@ -25,6 +25,11 @@ db = db.connect("./src/db", ["projects", "comments", "branches", "users"]);
 
 // getAllProjects()
 //   .then(projects => {
+//     const options = {
+//       multi: false, // update multiple - default false
+//       upsert: true // if object is not found, add it (update-insert) - default false
+//     };
+
 //     projects.forEach(project => {
 //       db.projects.save(project);
 

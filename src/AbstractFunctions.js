@@ -30,9 +30,14 @@ export async function getComments(projectId) {
 }
 
 export async function getBranches(projectId) {
-  const branches = await abstract.branches.list({
-    projectId: projectId
-  });
+  const branches = abstract.branches.list(
+    {
+      projectId: projectId
+    },
+    {
+      filter: "active"
+    }
+  );
 
   return branches;
 }

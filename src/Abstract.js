@@ -4,7 +4,7 @@ const abstract = new Abstract.Client();
 
 const getAllProjects = async function() {
   // Query all projects
-  const projects = await abstract.projects.list().catch(error => {
+  const projects = await abstract.projects.list({}, { limit: 10 }).catch(error => {
     console.log(error);
   });
 
@@ -29,9 +29,14 @@ const getComments = async function(projectId) {
 };
 
 const getBranches = async function(projectId) {
-  const branches = await abstract.branches.list({
-    projectId: projectId
-  });
+  const branches = await abstract.branches.list(
+    {
+      projectId: projectId
+    },
+    {
+      filter: "active"
+    }
+  );
 
   return branches;
 };

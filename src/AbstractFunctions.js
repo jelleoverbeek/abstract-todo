@@ -22,12 +22,21 @@ export async function getOrganizations() {
   return organizations;
 }
 
-export async function getComments(projectId) {
+export async function getComments(projectId, branchId) {
   const comments = await abstract.comments.list({
+    branchId: branchId,
     projectId: projectId
   });
 
   return comments;
+}
+
+export async function getComment(commentId) {
+  const comment = abstract.comments.info({
+    commentId: commentId
+  });
+
+  return comment;
 }
 
 export async function getBranches(projectId) {

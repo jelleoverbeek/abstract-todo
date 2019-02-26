@@ -7,34 +7,63 @@ class Project extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      branches: []
+      branches: null,
+      loading: true,
+      error: null
     };
+  }
+
+  loadingIndicator() {
+    if (this.state.loading) {
+      return <p>Loading branches...</p>;
+    }
+  }
+
+  errorHandler() {
+    if (this.state.error) {
+      if (this.state.error.name === "NotFoundError") {
+        return <p>No branches found</p>;
+      }
+    }
   }
 
   componentDidMount() {
     getBranches(this.props.id)
       .then(branches => {
-        console.log(branches);
         this.setState({
-          branches: branches
+          branches: branches,
+          loading: false
         });
       })
       .catch(error => {
-        console.log(error);
+        this.setState({
+          loading: false,
+          error: error
+        });
       });
   }
 
   render() {
-    return (
-      <div className="Project">
-        <h6>{this.props.name}</h6>
-        <ul>
-          {this.state.branches.map((branch, index) => {
-            return <MenuItem key={index} name={branch.name} userId={branch.userId} projectId={this.props.id} />;
-          })}
-        </ul>
-      </div>
-    );
+    if (this.state.branches) {
+      return (
+        <div className="Project">
+          <h6>{this.props.name}</h6>
+          <ul>
+            {this.state.branches.map((branch, index) => {
+              return <MenuItem key={index} name={branch.name} userId={branch.userId} projectId={this.props.id} branchId={branch.id} />;
+            })}
+          </ul>
+        </div>
+      );
+    } else {
+      return (
+        <div className="Project">
+          <h6>{this.props.name}</h6>
+          {this.loadingIndicator()}
+          {this.errorHandler()}
+        </div>
+      );
+    }
   }
 }
 

@@ -5,3 +5,8 @@
   padding: 0;
   list-style: none;
 }
+
+.Comments ul ul {
+  padding-left: 32px;
+  list-style: none;
+}

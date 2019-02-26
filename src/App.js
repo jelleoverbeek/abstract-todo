@@ -15,10 +15,8 @@ class App extends Component {
           <div className="splitview">
             <SideMenu />
             <main>
-              {/* <ApiTokenForm /> */}
-              {/* <Comments branchName="Success celebration" /> */}
               <Route path="/api-token/" component={ApiTokenForm} />
-              <Route path="/project/:projectId" component={Comments} />
+              <Route path="/comments/:projectId/:branchId" component={Comments} />
             </main>
           </div>
         </div>

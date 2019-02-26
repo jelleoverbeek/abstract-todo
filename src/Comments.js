@@ -11,7 +11,9 @@ class Comments extends React.Component {
     this.state = {
       comments: null,
       loading: true,
-      error: null
+      error: null,
+      projectId: null,
+      branchId: null
     };
   }
 
@@ -28,12 +30,11 @@ class Comments extends React.Component {
     return false;
   }
 
-  componentDidMount() {
+  setComments() {
     getComments(this.props.match.params.projectId, this.props.match.params.branchId)
       .then(comments => {
         const parentComments = comments.filter(this.filterByParentId);
 
-        console.log(parentComments);
         this.setState({
           comments: parentComments,
           loading: false
@@ -44,13 +45,24 @@ class Comments extends React.Component {
       });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.branchId !== prevProps.match.params.branchId) {
+      this.setComments();
+    }
+  }
+
+  componentDidMount() {
+    this.setComments();
+  }
+
   render() {
     const { match, location, history } = this.props;
+
     if (this.state.comments) {
       return (
         <div className="Comments">
-          <h3>Project: {match.params.projectId}</h3>
-          <h3>Branch: {match.params.branchId}</h3>
+          <h3>Project: {this.props.match.params.projectId}</h3>
+          <h3>Branch: {this.props.match.params.branchId}</h3>
           <ul>
             {this.state.comments.map((comment, index) => {
               return <CommentGroup key={index} comment={comment} />;

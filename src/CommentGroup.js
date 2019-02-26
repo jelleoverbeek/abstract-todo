@@ -13,22 +13,10 @@ class CommentGroup extends React.Component {
 
   hasChildComments() {
     if (this.props.comment.replyIds.length > 0) {
-      console.log(true);
       return true;
     } else {
-      console.log(false);
       return false;
     }
-  }
-
-  renderChildComments() {
-    this.props.comment.replyIds.forEach(commentId => {
-      getComment(commentId)
-        .then(comment => {})
-        .catch(error => {
-          console.log(error);
-        });
-    });
   }
 
   componentDidMount() {
@@ -43,8 +31,6 @@ class CommentGroup extends React.Component {
             this.setState({
               childComments: commentsArray
             });
-
-            console.log(this.state.childComments);
           })
           .catch(error => {
             console.log(error);

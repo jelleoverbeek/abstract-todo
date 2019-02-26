@@ -14,7 +14,7 @@ class SideMenu extends React.Component {
   componentDidMount() {
     getAllProjects()
       .then(projects => {
-        console.log(projects);
+        // console.log(projects);
         this.setState({
           projects: projects
         });

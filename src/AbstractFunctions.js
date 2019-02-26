@@ -1,4 +1,5 @@
-const Abstract = require("abstract-sdk");
+const Abstract = window.require("abstract-sdk");
+// import { Client } from "abstract-sdk";
 const abstract = new Abstract.Client({
   accessToken: "86a4aaf72e47121cfb784d9f84645b718284a501565ca58d63efacf9b1179ddb"
 });

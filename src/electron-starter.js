@@ -33,26 +33,27 @@ const url = require("url");
 //     projects.forEach(project => {
 //       db.projects.save(project);
 
-// getComments(project.id)
-//   .then(comments => {
-//     db.comments.save(comments);
+//       // getComments(project.id)
+//       //   .then(comments => {
+//       //     db.comments.save(comments);
+//       //   })
+//       //   .catch(error => {
+//       //     console.log(error);
+//       //   });
+
+//       getBranches(project.id)
+//         .then(branches => {
+//           console.log(branches);
+//           db.branches.save(branches);
+//         })
+//         .catch(error => {
+//           console.log(error);
+//         });
+//     });
 //   })
 //   .catch(error => {
 //     console.log(error);
 //   });
-
-//     getBranches(project.id)
-//       .then(branches => {
-//         db.branches.save(branches);
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   });
-// })
-// .catch(error => {
-//   console.log(error);
-// });
 
 // Module to control application life.
 const app = electron.app;

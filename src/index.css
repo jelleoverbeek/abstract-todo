@@ -6,8 +6,10 @@
   --white-60: rgba(255, 255, 255, 0.6);
   --white-50: rgba(255, 255, 255, 0.6);
   --blue: #0055ff;
+  --blue-darken: #0044cc;
   --red: #b31a00;
   --item: #121821;
+  --item-hover: #2d3540;
   --button: #1c212a;
   --button-hover: #2d3540;
   --border-radius: 6px;

@@ -13,6 +13,21 @@
   color: var(--white-80);
 }
 
+.MenuItem:hover {
+  background-color: var(--item-hover);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.MenuItem--active {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.MenuItem--active:hover {
+  background-color: var(--blue-darken);
+}
+
 .MenuItem span {
   white-space: nowrap;
   text-overflow: ellipsis;

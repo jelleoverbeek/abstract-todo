@@ -2,6 +2,12 @@ import React from "react";
 import PrimaryButton from "./PrimaryButton";
 import "./ApiToken.css";
 
+const { getCurrentWindow } = window.require("electron").remote;
+
+function getApiToken() {
+  return localStorage.getItem("ABSTRACT_TOKEN");
+}
+
 class ApiTokenForm extends React.Component {
   constructor(props) {
     super(props);
@@ -12,19 +18,14 @@ class ApiTokenForm extends React.Component {
 
   storeApiToken(event) {
     event.preventDefault();
-
     const token = event.target.querySelector(".api-token").value;
     localStorage.setItem("ABSTRACT_TOKEN", token);
-  }
-
-  getApiToken() {
-    const token = localStorage.getItem("ABSTRACT_TOKEN");
-    return token;
+    getCurrentWindow().reload();
   }
 
   componentDidMount() {
     this.setState({
-      token: this.getApiToken()
+      token: getApiToken()
     });
   }
 
@@ -48,4 +49,4 @@ class ApiTokenForm extends React.Component {
   }
 }
 
-export default ApiTokenForm;
+export { getApiToken, ApiTokenForm };

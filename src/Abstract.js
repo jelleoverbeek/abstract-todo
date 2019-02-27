@@ -1,8 +1,17 @@
+import { getApiToken } from "./ApiToken";
 const Abstract = window.require("abstract-sdk");
-// import { Client } from "abstract-sdk";
+
 const abstract = new Abstract.Client({
-  accessToken: "86a4aaf72e47121cfb784d9f84645b718284a501565ca58d63efacf9b1179ddb"
+  accessToken: getApiToken()
 });
+
+export async function isConnected() {
+  try {
+    return await abstract.organizations.list();
+  } catch (e) {
+    return "Authentication error";
+  }
+}
 
 export async function getAllProjects() {
   // Query all projects

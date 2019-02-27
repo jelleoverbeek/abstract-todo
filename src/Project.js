@@ -1,6 +1,6 @@
 import React from "react";
 import "./Project.css";
-import { getBranches } from "./AbstractFunctions";
+import { getBranches } from "./Abstract";
 import MenuItem from "./MenuItem";
 
 class Project extends React.Component {

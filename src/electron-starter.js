@@ -1,59 +1,10 @@
 require("dotenv").config();
 const electron = require("electron");
-// const { getAllProjects, getComments, getBranches, getOrganizations, getUsers } = require("./abstract");
 const path = require("path");
 const url = require("url");
 
 // var db = require("diskdb");
 // db = db.connect("./src/db", ["projects", "comments", "branches", "users"]);
-
-// getOrganizations()
-//   .then(organizations => {
-//     organizations.forEach(organization => {
-//       getUsers(organization.id)
-//         .then(users => {
-//           console.log(users);
-//         })
-//         .catch(error => {
-//           console.log(error);
-//         });
-//     });
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
-
-// getAllProjects()
-//   .then(projects => {
-//     const options = {
-//       multi: false, // update multiple - default false
-//       upsert: true // if object is not found, add it (update-insert) - default false
-//     };
-
-//     projects.forEach(project => {
-//       db.projects.save(project);
-
-//       // getComments(project.id)
-//       //   .then(comments => {
-//       //     db.comments.save(comments);
-//       //   })
-//       //   .catch(error => {
-//       //     console.log(error);
-//       //   });
-
-//       getBranches(project.id)
-//         .then(branches => {
-//           console.log(branches);
-//           db.branches.save(branches);
-//         })
-//         .catch(error => {
-//           console.log(error);
-//         });
-//     });
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
 
 // Module to control application life.
 const app = electron.app;

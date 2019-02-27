@@ -1,6 +1,6 @@
 import React from "react";
 import "./CommentGroup.css";
-import { getComment } from "./AbstractFunctions";
+import { getComment } from "./Abstract";
 import Comment from "./Comment";
 
 class CommentGroup extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Comments.css";
-import { getComments } from "./AbstractFunctions";
+import { getComments } from "./Abstract";
 import CommentGroup from "./CommentGroup";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";

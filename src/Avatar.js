@@ -1,6 +1,6 @@
 import React from "react";
 import "./Avatar.css";
-import { getUser } from "./AbstractFunctions";
+import { getUser } from "./Abstract";
 
 class Avatar extends React.Component {
   constructor(props) {

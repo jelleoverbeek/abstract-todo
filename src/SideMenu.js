@@ -1,6 +1,6 @@
 import React from "react";
 import "./SideMenu.css";
-import { getAllProjects } from "./AbstractFunctions";
+import { getAllProjects } from "./Abstract";
 import Project from "./Project";
 
 class SideMenu extends React.Component {

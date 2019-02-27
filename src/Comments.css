@@ -1,6 +1,15 @@
-.Comments {
-  padding: 32px 40px;
+.Comments header {
 }
+
+.Comments .Avatar {
+  margin-right: 8px;
+}
+
+.Comments .author {
+  display: flex;
+  align-items: center;
+}
+
 .Comments ul {
   padding: 0;
   list-style: none;

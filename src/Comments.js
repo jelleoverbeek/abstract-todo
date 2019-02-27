@@ -1,7 +1,8 @@
 import React from "react";
 import "./Comments.css";
-import { getComments } from "./Abstract";
+import { getProject, getBranch, getComments } from "./Abstract";
 import CommentGroup from "./CommentGroup";
+import Avatar from "./Avatar";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
@@ -9,8 +10,12 @@ class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: null,
-      loading: true,
+      comments: [],
+      commentsLoading: true,
+      project: {},
+      projectLoading: true,
+      branch: {},
+      branchLoading: true,
       error: null,
       projectId: null,
       branchId: null
@@ -31,13 +36,50 @@ class Comments extends React.Component {
   }
 
   setComments() {
-    getComments(this.props.match.params.projectId, this.props.match.params.branchId)
+    const projectId = this.props.match.params.projectId;
+    const branchId = this.props.match.params.branchId;
+
+    getComments(projectId, branchId)
       .then(comments => {
         const parentComments = comments.filter(this.filterByParentId);
 
         this.setState({
+          // comments: [...this.state.comments, parentComments],
           comments: parentComments,
-          loading: false
+          commentsLoading: false
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  setProject() {
+    const projectId = this.props.match.params.projectId;
+
+    getProject(projectId)
+      .then(project => {
+        console.log(project[0]);
+        this.setState({
+          project: project[0],
+          projectLoading: false
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  setBranch() {
+    const projectId = this.props.match.params.projectId;
+    const branchId = this.props.match.params.branchId;
+
+    getBranch(projectId, branchId)
+      .then(branch => {
+        console.log(branch);
+        this.setState({
+          branch: branch,
+          branchLoading: false
         });
       })
       .catch(error => {
@@ -46,23 +88,37 @@ class Comments extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.match.params.projectId !== prevProps.match.params.projectId) {
+      this.setState({
+        branchLoading: true
+      });
+      this.setBranch();
+    }
+
     if (this.props.match.params.branchId !== prevProps.match.params.branchId) {
+      this.setState({
+        commentsLoading: true
+      });
       this.setComments();
     }
   }
 
   componentDidMount() {
+    this.setBranch();
     this.setComments();
   }
 
   render() {
-    const { match, location, history } = this.props;
-
-    if (this.state.comments) {
+    if (!this.state.commentsLoading && !this.state.branchLoading) {
       return (
         <div className="Comments">
-          <h3>Project: {this.props.match.params.projectId}</h3>
-          <h3>Branch: {this.props.match.params.branchId}</h3>
+          <header>
+            <h2>{this.state.branch.name}</h2>
+            <p className="author">
+              <Avatar userId={this.state.branch.userId} />
+              {this.state.branch.userName}
+            </p>
+          </header>
           <ul>
             {this.state.comments.map((comment, index) => {
               return <CommentGroup key={index} comment={comment} />;

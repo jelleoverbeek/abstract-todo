@@ -65,9 +65,10 @@ input[type="checkbox"] {
   padding: 0;
   width: 24px;
   height: 24px;
-  border: 2px solid var(--blue);
+  border: 2px solid var(--white-80);
   border-radius: var(--border-radius);
   cursor: pointer;
+  margin: 0;
 }
 
 input[type="checkbox"]:checked {
@@ -93,7 +94,7 @@ input[type="checkbox"]:focus {
 
 main {
   width: 100%;
-  padding: 40px;
+  padding: 32px 40px;
   height: calc(100vh - 66px);
   overflow-y: auto;
 }

@@ -52,6 +52,16 @@ export async function getBranches(projectId) {
   return branches;
 }
 
+export async function getBranch(projectId, branchId) {
+  // Somehow I need to pass the branchId to the projectId and the other way around
+  const branch = abstract.branches.info({
+    projectId: branchId,
+    branchId: projectId
+  });
+
+  return branch;
+}
+
 export async function getUsers(organizationId) {
   const comments = await abstract.comments.list({
     organizationId: organizationId

@@ -19,7 +19,7 @@ class CommentGroup extends React.Component {
     }
   }
 
-  componentDidMount() {
+  setChildComments() {
     if (this.hasChildComments()) {
       const commentsArray = [];
 
@@ -36,6 +36,16 @@ class CommentGroup extends React.Component {
             console.log(error);
           });
       });
+    }
+  }
+
+  componentDidMount() {
+    this.setChildComments();
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState !== prevState) {
+      this.setChildComments();
     }
   }
 

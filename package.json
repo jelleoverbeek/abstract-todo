@@ -1,23 +1,28 @@
 {
   "name": "abstract-todo",
+  "author": "Jelle Overbeek <overbeekjelle@gmail.com> (https://jelle.im)",
   "version": "0.1.0",
+  "main": "public/electron.js",
+  "homepage": "./",
   "private": true,
   "devDependencies": {
-    "electron": "^4.0.5",
+    "concurrently": "^4.1.0",
+    "electron": "^4.0.6",
+    "electron-builder": "^20.38.5",
     "foreman": "^3.0.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "wait-on": "^3.2.0"
   },
   "dependencies": {
     "abstract-sdk": "^1.0.0-beta.3",
     "diskdb": "^0.1.17",
     "dotenv": "^6.2.0",
+    "electron-is-dev": "^1.0.1",
     "fs": "^0.0.1-security",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-router-dom": "^4.3.1"
   },
-  "homepage": "./",
-  "main": "src/electron-starter.js",
   "scripts": {
     "start": "nf start -p 3000",
     "build": "react-scripts build",
@@ -25,7 +30,25 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "electron-start": "node src/electron-wait-react",
-    "react-start": "react-scripts start"
+    "react-start": "react-scripts start",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "build --em.main=build/electron.js",
+    "preelectron-pack": "yarn build"
+  },
+  "build": {
+    "appId": "com.electron.abstracttodo",
+    "mac": {
+      "category": "productivity"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "browserslist": [
     ">0.2%",

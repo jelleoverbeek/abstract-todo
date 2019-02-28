@@ -18,8 +18,8 @@ class Main extends Component {
   isApiTokenValid() {
     isConnected()
       .then(response => {
-        if (response == "Authentication error") {
-          console.error("Authentication error");
+        if (response == "API Error") {
+          console.error("API Error");
           this.setState({
             abstractConnection: false
           });

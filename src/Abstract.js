@@ -9,7 +9,8 @@ export async function isConnected() {
   try {
     return await abstract.organizations.list();
   } catch (e) {
-    return "Authentication error";
+    console.log(e.info);
+    return "API Error";
   }
 }
 

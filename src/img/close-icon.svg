@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>close-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Branches" transform="translate(-267.000000, -147.000000)">
+            <g id="close-icon" transform="translate(267.000000, 147.000000)">
+                <circle id="Oval" fill="#B4C1D4" cx="12" cy="12" r="12"></circle>
+                <path d="M11.2,11.2 L11.2,7.2 C11.2,6.7581722 11.5581722,6.4 12,6.4 C12.4418278,6.4 12.8,6.7581722 12.8,7.2 L12.8,11.2 L16.8,11.2 C17.2418278,11.2 17.6,11.5581722 17.6,12 C17.6,12.4418278 17.2418278,12.8 16.8,12.8 L12.8,12.8 L12.8,16.8 C12.8,17.2418278 12.4418278,17.6 12,17.6 C11.5581722,17.6 11.2,17.2418278 11.2,16.8 L11.2,12.8 L7.2,12.8 C6.7581722,12.8 6.4,12.4418278 6.4,12 C6.4,11.5581722 6.7581722,11.2 7.2,11.2 L11.2,11.2 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(12.000000, 12.000000) rotate(45.000000) translate(-12.000000, -12.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

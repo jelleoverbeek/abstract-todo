@@ -65,8 +65,8 @@ export async function getBranches(projectId) {
 export async function getBranch(projectId, branchId) {
   // Somehow I need to pass the branchId to the projectId and the other way around
   const branch = abstract.branches.info({
-    projectId: branchId,
-    branchId: projectId
+    projectId: projectId,
+    branchId: branchId
   });
 
   return branch;

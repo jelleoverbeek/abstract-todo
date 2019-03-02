@@ -72,7 +72,9 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-image: url("./img/checkmark.svg");
+  background-color: var(--blue);
+  border-color: var(--blue);
+  background-image: url("./img/checkmark-icon.svg");
   background-size: contain;
 }
 

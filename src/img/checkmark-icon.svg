@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>checkmark-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="checkmark-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(12.173442, 10.500000) rotate(4.000000) translate(-12.173442, -10.500000) translate(4.173442, 2.000000)" fill="#FFFFFF" id="Group-18">
+            <g transform="translate(7.930862, 8.357595) rotate(-57.000000) translate(-7.930862, -8.357595) translate(1.430862, 3.857595)">
+                <path d="M3.07631132,5.14992881 L10.6179054,5.14992881 C11.4463325,5.14992881 12.1179054,5.82150168 12.1179054,6.64992881 C12.1179054,7.47835593 11.4463325,8.14992881 10.6179054,8.14992881 L1.1179054,8.14992881 C0.565620651,8.14992881 0.117905401,7.70221356 0.117905401,7.14992881 L0.117905401,5.40748715 L0.0763113153,5.40748715 L0.0763113153,1.90748715 C0.0763113153,1.07906003 0.747884191,0.407487153 1.57631132,0.407487153 C2.40473844,0.407487153 3.07631132,1.07906003 3.07631132,1.90748715 L3.07631132,5.14992881 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -64,7 +64,7 @@ class SideMenu extends React.Component {
               this.clearActiveProject();
             }}
           >
-            <MenuItem projectId={this.state.activeProject.id} name={this.state.activeProject.name} />
+            <MenuItem projectId={this.state.activeProject.id} name={this.state.activeProject.name} projectActive={true} />
           </li>
         </ul>
       );

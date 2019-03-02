@@ -46,7 +46,7 @@ class Main extends Component {
           <SideMenu />
           <main>
             <Route path="/api-token/" component={ApiTokenForm} />
-            <Route path="/comments/:projectId/:branchId" component={Comments} />
+            <Route path="/project/:projectId/branch/:branchId" component={Comments} />
           </main>
         </div>
       );

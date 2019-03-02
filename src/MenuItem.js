@@ -6,12 +6,10 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 class MenuItem extends React.Component {
   render() {
     return (
-      <li>
-        <NavLink to={`/comments/${this.props.projectId}/${this.props.branchId}`} className="MenuItem" activeClassName="MenuItem--active">
-          <span>{this.props.name}</span>
-          <Avatar userId={this.props.userId} />
-        </NavLink>
-      </li>
+      <NavLink to={`/projects/${this.props.projectId}`} className="MenuItem" activeClassName="MenuItem--active">
+        <span>{this.props.name}</span>
+        <Avatar userId={this.props.userId} />
+      </NavLink>
     );
   }
 }

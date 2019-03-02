@@ -37,6 +37,17 @@ class MenuItem extends React.Component {
     }
   }
 
+  renderProjectColor(color) {
+    if (this.isProjectCloseLink() || this.isProjectLink()) {
+      console.log(color);
+      const style = {
+        backgroundColor: color
+      };
+
+      return <div className="color-border" style={style} />;
+    }
+  }
+
   renderCloseIcon() {
     if (this.isProjectCloseLink()) {
       return <img src={closeIcon} />;
@@ -46,6 +57,7 @@ class MenuItem extends React.Component {
   render() {
     return (
       <NavLink to={this.getRouteUrl()} className="MenuItem" activeClassName="MenuItem--active">
+        {this.renderProjectColor(this.props.projectColor)}
         <span>{this.props.name}</span>
         {this.renderAvatar()}
         {this.renderCloseIcon()}

@@ -1,5 +1,6 @@
 .button--primary {
   background-color: var(--blue);
+  color: var(--white);
 }
 
 .button--primary:hover {

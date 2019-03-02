@@ -28,6 +28,7 @@ class SideMenu extends React.Component {
   }
 
   setActive(project) {
+    console.log(project);
     this.setState({
       activeProjectId: project.id,
       activeProject: project
@@ -58,19 +59,24 @@ class SideMenu extends React.Component {
   renderProjectsList() {
     if (this.isProjectActive()) {
       return (
-        <ul>
+        <ul className="Projects">
           <li
             onClick={event => {
               this.clearActiveProject();
             }}
           >
-            <MenuItem projectId={this.state.activeProject.id} name={this.state.activeProject.name} projectActive={true} />
+            <MenuItem
+              projectId={this.state.activeProject.id}
+              name={this.state.activeProject.name}
+              projectActive={true}
+              projectColor={this.state.activeProject.color}
+            />
           </li>
         </ul>
       );
     } else {
       return (
-        <ul>
+        <ul className="Projects">
           {this.state.projects.map((project, index) => {
             return (
               <li
@@ -79,7 +85,7 @@ class SideMenu extends React.Component {
                   this.setActive(project);
                 }}
               >
-                <MenuItem projectId={project.id} name={project.name} />
+                <MenuItem projectId={project.id} name={project.name} projectColor={project.color} />
               </li>
             );
           })}
@@ -91,7 +97,7 @@ class SideMenu extends React.Component {
   renderBranchesList() {
     if (this.isProjectActive()) {
       return (
-        <div>
+        <div className="Branches">
           <h2>Branches</h2>
           <Branches projectId={this.state.activeProjectId} />
         </div>

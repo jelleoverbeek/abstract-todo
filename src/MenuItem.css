@@ -2,31 +2,38 @@
   background-color: var(--item);
   border-radius: var(--border-radius);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-size: 15px;
   font-weight: 500;
-  padding: 16px;
+  padding: 8px 16px 8px 12px;
   width: 100%;
   margin-top: 8px;
   height: 56px;
-  color: var(--white-80);
+  color: var(--text-80);
+}
+
+.MenuItem .color-border {
+  width: 3px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 1.5px;
 }
 
 .MenuItem:hover {
   background-color: var(--item-hover);
-  color: var(--white);
+  color: var(--text);
   text-decoration: none;
 }
 
 .MenuItem--active {
-  background-color: var(--blue);
-  color: var(--white);
+  background-color: var(--item-active);
+  color: var(--text);
 }
 
-.MenuItem--active:hover {
-  background-color: var(--blue-darken);
-}
+/* .MenuItem--active:hover {
+  background-color: var(--blue-hover);
+} */
 
 .MenuItem span {
   white-space: nowrap;
@@ -36,5 +43,5 @@
 }
 
 .MenuItem img {
-  margin-left: 16px;
+  margin-left: auto;
 }

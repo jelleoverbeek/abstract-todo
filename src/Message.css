@@ -1,0 +1,20 @@
+.Message {
+  padding: 24px;
+  border-radius: var(--border-radius);
+  margin: 24px 0;
+}
+
+.message--error {
+  background: #ffe1db;
+  color: #76210f;
+}
+
+/* .message--danger {
+  background: #ffe1db;
+  color: #76210f;
+} */
+
+.message--success {
+  background: #d1f2db;
+  color: #187c38;
+}

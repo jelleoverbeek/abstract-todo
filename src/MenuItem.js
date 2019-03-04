@@ -39,7 +39,6 @@ class MenuItem extends React.Component {
 
   renderProjectColor(color) {
     if (this.isProjectCloseLink() || this.isProjectLink()) {
-      console.log(color);
       const style = {
         backgroundColor: color
       };

@@ -6,24 +6,35 @@ import { isConnected } from "./Abstract";
 import Header from "./Header";
 import SideMenu from "./SideMenu";
 import Comments from "./Comments";
+import Message from "./Message";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      abstractConnection: false
+      abstractConnection: false,
+      error: false,
+      errorMessage: null
     };
   }
 
-  isApiTokenValid() {
-    isConnected()
+  async checkApiConnection() {
+    await isConnected()
       .then(response => {
-        if (response == "API Error") {
-          console.error("API Error");
+        if (response.name === "UnauthorizedError") {
           this.setState({
-            abstractConnection: false
+            abstractConnection: false,
+            error: response.name,
+            errorMessage: response.message
+          });
+        } else if (response === "RateLimitError") {
+          this.setState({
+            abstractConnection: true,
+            error: response.name,
+            errorMessage: response.message
           });
         } else {
+          console.log(response);
           this.setState({
             abstractConnection: true
           });
@@ -35,12 +46,31 @@ class Main extends Component {
       });
   }
 
+  componentWillMount() {
+    this.checkApiConnection();
+  }
+
   componentDidMount() {
-    this.isApiTokenValid();
+    this.checkApiConnection();
   }
 
   render() {
-    if (this.state.abstractConnection) {
+    if (this.state.error === "UnauthorizedError") {
+      return (
+        <main>
+          <ApiTokenForm />
+          <div className="container--small">
+            <Message type="error" text={this.state.errorMessage} />
+          </div>
+        </main>
+      );
+    } else if (this.state.error) {
+      return (
+        <main>
+          <Message type="error" text={this.state.errorMessage} />
+        </main>
+      );
+    } else {
       return (
         <div className="splitview">
           <SideMenu />
@@ -49,12 +79,6 @@ class Main extends Component {
             <Route path="/project/:projectId/branch/:branchId" component={Comments} />
           </main>
         </div>
-      );
-    } else {
-      return (
-        <main>
-          <ApiTokenForm />
-        </main>
       );
     }
   }

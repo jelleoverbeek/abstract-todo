@@ -31,17 +31,23 @@ class ApiTokenForm extends React.Component {
 
   render() {
     return (
-      <div className="container--small">
-        <h2>API Token</h2>
-        <p>
-          To access your projects you need to create and supply an API token. You can do this by going to the{" "}
+      <div className="container--small container--api-token">
+        <h1>Let’s get you up and running</h1>
+        <p className="subtitle">To load your Abstract projects the app needs an API token.</p>
+
+        <h3>
+          1. Create and copy a token from{" "}
           <a target="_blank" href="https://app.goabstract.com/account/tokens" rel="noopener noreferrer">
-            API Tokens
-          </a>{" "}
-          section in your Personal Settings of Abstract. The token will be stored locally. div.
-        </p>
+            this page
+          </a>
+        </h3>
+        <p className="paragraph--small">Give the token a description. For example: Abstract To Do’s </p>
+
+        <h3>2. Paste it here</h3>
+        <p className="paragraph--small">The API token will be saved in locally. In your LocalStorage.</p>
+
         <form className="form--api-token" onSubmit={this.storeApiToken}>
-          <input className="input--big api-token" type="text" placeholder={this.state.token} />
+          <input className="input--big api-token" type="text" placeholder="Paste API token" />
           <PrimaryButton text="Save" />
         </form>
       </div>

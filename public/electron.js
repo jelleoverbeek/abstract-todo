@@ -16,6 +16,11 @@ function createWindow() {
     }
   });
 
+  mainWindow.webContents.on("new-window", function(e, url) {
+    e.preventDefault();
+    require("electron").shell.openExternal(url);
+  });
+
   if (isDev) {
     console.log("Running in development");
     mainWindow.webContents.openDevTools();

@@ -5,11 +5,11 @@
   --white: #ffffff;
   --white-80: rgba(255, 255, 255, 0.8);
   --white-60: rgba(255, 255, 255, 0.6);
-  --white-50: rgba(255, 255, 255, 0.6);
+  --white-50: rgba(255, 255, 255, 0.5);
   --text: #010711;
-  --text-80: rgba(0, 8, 18, 0.8);
-  --text-60: rgba(0, 8, 18, 0.6);
-  --text-40: rgba(0, 8, 18, 0.4);
+  --text-80: rgba(1, 7, 17, 0.8);
+  --text-60: rgba(1, 7, 17, 0.6);
+  --text-40: rgba(1, 7, 17, 0.4);
   --blue: #0055ff;
   --blue-darken: #0044cc;
   --red: #b31a00;

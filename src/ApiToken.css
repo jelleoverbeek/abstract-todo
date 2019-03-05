@@ -1,3 +1,7 @@
+.container--api-token h3 {
+  margin-top: 40px;
+}
+
 .form--api-token {
   display: flex;
   margin-top: 16px;

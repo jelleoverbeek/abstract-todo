@@ -6,6 +6,10 @@
   margin-top: 8px;
 }
 
+.Comment p {
+  color: var(--text-80);
+}
+
 .Comment header {
   font-size: 12px;
   font-weight: 500;

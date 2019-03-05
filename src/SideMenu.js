@@ -74,7 +74,7 @@ class SideMenu extends React.Component {
           </li>
         </ul>
       );
-    } else {
+    } else if (this.state.projects.length) {
       return (
         <ul className="Projects">
           {this.state.projects.map((project, index) => {

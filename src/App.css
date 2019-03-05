@@ -16,15 +16,29 @@ p {
 }
 
 h1 {
-  font-size: 38px;
-  margin-top: 72px;
+  font-size: 34px;
+  margin-top: 48px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+h1 + .subtitle {
+  font-weight: 400;
+  color: var(--text-60);
+  margin-top: 0;
   margin-bottom: 48px;
+  font-size: 18px;
 }
 
 h2 {
   font-size: 22px;
   font-weight: 600;
   margin-top: 0px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
 }
 
 h6 {
@@ -39,6 +53,12 @@ p {
   color: var(--text-80);
   line-height: 1.5;
   margin-top: 8px;
+}
+
+.paragraph--small {
+  font-size: 14px;
+  color: var(--text-60);
+  line-height: 24px;
 }
 
 a {

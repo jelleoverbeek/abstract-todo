@@ -1,6 +1,7 @@
 import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
+import abstractLogo from "./img/abstract-logo.svg";
 var db = window.require("diskdb");
 db = db.connect("./src/db", ["comments"]);
 
@@ -10,6 +11,12 @@ class Comment extends React.Component {
     this.state = {
       status: "active"
     };
+  }
+
+  abstractCommentLink(comment) {
+    return `https://app.goabstract.com/projects/${comment.projectId}/branches/${comment.branchId}/commits/${comment.commitSha}/files/${comment.fileId}/layers/${
+      comment.layerId
+    }?commentId=${comment.id}`;
   }
 
   findComment(query) {
@@ -94,6 +101,11 @@ class Comment extends React.Component {
             <time dateTime={this.props.date}>&nbsp;—&nbsp;{this.props.comment.createdAt}</time>
           </header>
           <p>{this.props.comment.body}</p>
+        </div>
+        <div className="actions">
+          <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props.comment)}>
+            <img src={abstractLogo} />
+          </a>
         </div>
       </div>
     );

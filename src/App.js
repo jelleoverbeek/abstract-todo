@@ -34,11 +34,9 @@ class Main extends Component {
             errorMessage: response.message
           });
         } else {
-          console.log(response);
           this.setState({
             abstractConnection: true
           });
-          console.log("Connected!");
         }
       })
       .catch(error => {

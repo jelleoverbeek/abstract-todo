@@ -98,7 +98,7 @@ class SideMenu extends React.Component {
     if (this.isProjectActive()) {
       return (
         <div className="Branches">
-          <h2>Branches</h2>
+          <h3>Branches</h3>
           <Branches projectId={this.state.activeProjectId} />
         </div>
       );
@@ -112,7 +112,7 @@ class SideMenu extends React.Component {
   render() {
     return (
       <aside className="SideMenu">
-        <h2>Projects</h2>
+        <h3>Projects</h3>
         {this.renderProjectsList()}
         {this.renderBranchesList()}
       </aside>

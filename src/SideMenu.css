@@ -6,6 +6,10 @@
   overflow-y: auto;
 }
 
+.SideMenu h3 {
+  margin-top: 0;
+}
+
 .SideMenu ul {
   padding: 0;
   list-style: none;

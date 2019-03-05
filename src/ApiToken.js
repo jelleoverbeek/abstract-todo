@@ -37,7 +37,7 @@ class ApiTokenForm extends React.Component {
 
         <h3>
           1. Create and copy a token from{" "}
-          <a target="_blank" href="https://app.goabstract.com/account/tokens" rel="noopener noreferrer">
+          <a target="_blank" rel="noopener noreferrer" href="https://app.goabstract.com/account/tokens">
             this page
           </a>
         </h3>

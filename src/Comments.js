@@ -12,6 +12,7 @@ class Comments extends React.Component {
     this.state = {
       comments: [],
       commentsLoading: true,
+      commentAmount: 0,
       project: {},
       projectLoading: true,
       branch: {},
@@ -41,12 +42,13 @@ class Comments extends React.Component {
 
     getComments(projectId, branchId)
       .then(comments => {
+        const commentAmount = comments.length;
         const parentComments = comments.filter(this.filterByParentId);
 
         this.setState({
-          // comments: [...this.state.comments, parentComments],
           comments: parentComments,
-          commentsLoading: false
+          commentsLoading: false,
+          commentAmount: commentAmount
         });
       })
       .catch(error => {
@@ -113,11 +115,10 @@ class Comments extends React.Component {
       return (
         <div className="Comments">
           <header>
-            <h2>{this.state.branch.name}</h2>
-            <p className="author">
-              <Avatar userId={this.state.branch.userId} />
-              {this.state.branch.userName}
-            </p>
+            <h2>
+              {this.state.branch.name} <Avatar userId={this.state.branch.userId} />
+            </h2>
+            <p className="paragraph--small">{this.state.commentAmount} comments</p>
           </header>
           <ul>
             {this.state.comments.map((comment, index) => {

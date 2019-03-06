@@ -1,0 +1,25 @@
+.Loader {
+  padding: 24px 0;
+  font-size: 15px;
+  color: var(--text-60);
+  display: flex;
+  align-items: center;
+}
+
+.Loader img {
+  margin-right: 16px;
+
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1200ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

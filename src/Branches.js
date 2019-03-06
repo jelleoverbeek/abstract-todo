@@ -2,6 +2,7 @@ import React from "react";
 import "./Branches.css";
 import { getBranches } from "./Abstract";
 import MenuItem from "./MenuItem";
+import Loader from "./Loader";
 
 class Branches extends React.Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class Branches extends React.Component {
   }
 
   loadingIndicator() {
-    if (this.state.loading) {
-      return <p>Loading branches...</p>;
-    }
+    // if (this.state.loading) {
+    return <Loader name="branches" />;
+    // }
   }
 
   errorHandler() {

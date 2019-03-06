@@ -30,6 +30,38 @@ function createWindow() {
 
   mainWindow.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
   mainWindow.on("closed", () => (mainWindow = null));
+
+  // Create the Application's main menu
+  var template = [
+    {
+      label: "Application",
+      submenu: [
+        { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+        { type: "separator" },
+        {
+          label: "Quit",
+          accelerator: "Command+Q",
+          click: function() {
+            app.quit();
+          }
+        }
+      ]
+    },
+    {
+      label: "Edit",
+      submenu: [
+        { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+        { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+        { type: "separator" },
+        { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+        { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+        { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+      ]
+    }
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
 app.on("ready", createWindow);
@@ -45,81 +77,3 @@ app.on("activate", () => {
     createWindow();
   }
 });
-
-const template = [
-  {
-    label: "Edit",
-    submenu: [
-      { role: "undo" },
-      { role: "redo" },
-      { type: "separator" },
-      { role: "cut" },
-      { role: "copy" },
-      { role: "paste" },
-      { role: "pasteandmatchstyle" },
-      { role: "delete" },
-      { role: "selectall" }
-    ]
-  },
-  {
-    label: "View",
-    submenu: [
-      { role: "reload" },
-      { role: "forcereload" },
-      { role: "toggledevtools" },
-      { type: "separator" },
-      { role: "resetzoom" },
-      { role: "zoomin" },
-      { role: "zoomout" },
-      { type: "separator" },
-      { role: "togglefullscreen" }
-    ]
-  },
-  {
-    role: "window",
-    submenu: [{ role: "minimize" }, { role: "close" }]
-  },
-  {
-    role: "help",
-    submenu: [
-      {
-        label: "Learn More",
-        click() {
-          require("electron").shell.openExternal("https://electronjs.org");
-        }
-      }
-    ]
-  }
-];
-
-if (process.platform === "darwin") {
-  template.unshift({
-    label: app.getName(),
-    submenu: [
-      { role: "about" },
-      { type: "separator" },
-      { role: "services" },
-      { type: "separator" },
-      { role: "hide" },
-      { role: "hideothers" },
-      { role: "unhide" },
-      { type: "separator" },
-      { role: "quit" }
-    ]
-  });
-
-  // Edit menu
-  template[1].submenu.push(
-    { type: "separator" },
-    {
-      label: "Speech",
-      submenu: [{ role: "startspeaking" }, { role: "stopspeaking" }]
-    }
-  );
-
-  // Window menu
-  template[3].submenu = [{ role: "close" }, { role: "minimize" }, { role: "zoom" }, { type: "separator" }, { role: "front" }];
-}
-
-const menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu);

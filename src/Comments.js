@@ -5,6 +5,7 @@ import CommentGroup from "./CommentGroup";
 import Avatar from "./Avatar";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import Loader from "./Loader";
 
 class Comments extends React.Component {
   constructor(props) {
@@ -128,7 +129,7 @@ class Comments extends React.Component {
         </div>
       );
     } else {
-      return <p>Loading comments...</p>;
+      return <Loader name="comments" />;
     }
   }
 }

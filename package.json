@@ -15,10 +15,8 @@
   },
   "dependencies": {
     "abstract-sdk": "^1.0.0-beta.3",
-    "diskdb": "^0.1.17",
-    "dotenv": "^6.2.0",
     "electron-is-dev": "^1.0.1",
-    "fs": "^0.0.1-security",
+    "localforage": "^1.7.3",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-router-dom": "^4.3.1"

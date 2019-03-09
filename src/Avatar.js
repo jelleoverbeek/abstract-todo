@@ -1,9 +1,7 @@
 import React from "react";
 import "./Avatar.css";
 import { getUser } from "./Abstract";
-
-var db = window.require("diskdb");
-db = db.connect("./src/db", ["users"]);
+import localforage from "localforage";
 
 class Avatar extends React.Component {
   constructor(props) {
@@ -14,24 +12,16 @@ class Avatar extends React.Component {
     };
   }
 
-  findUser(userId) {
-    const query = {
-      id: userId
-    };
+  saveUser(user) {
+    const string = JSON.stringify(user);
 
-    const user = db.users.findOne(query);
-
-    if (user) {
-      return user;
-    }
-    return false;
+    localforage.setItem(user.id, string).then(() => {});
   }
 
   fetchUser(userId) {
     getUser(userId)
       .then(user => {
-        db.users.save(user);
-
+        this.saveUser(user);
         this.setState({
           avatarUrl: user.avatarUrl,
           name: user.name
@@ -42,18 +32,28 @@ class Avatar extends React.Component {
       });
   }
 
-  componentDidMount() {
-    if (this.props.userId) {
-      const user = this.findUser(this.props.userId);
+  findUser(userId) {
+    localforage.getItem(userId).then(user => {
+      user = JSON.parse(user);
 
-      if (!user) {
-        this.fetchUser(this.props.userId);
-      } else {
+      if (user) {
         this.setState({
           avatarUrl: user.avatarUrl,
           name: user.name
         });
+      } else {
+        this.fetchUser(userId);
       }
+    });
+  }
+
+  setUser(userId) {
+    this.findUser(userId);
+  }
+
+  componentDidMount() {
+    if (this.props.userId) {
+      this.setUser(this.props.userId);
     }
   }
 

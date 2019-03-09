@@ -2,8 +2,7 @@ import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
 import abstractLogo from "./img/abstract-logo.svg";
-var db = window.require("diskdb");
-db = db.connect("./src/db", ["comments"]);
+import localforage from "localforage";
 
 class Comment extends React.Component {
   constructor(props) {
@@ -20,12 +19,11 @@ class Comment extends React.Component {
   }
 
   findComment(query) {
-    const comment = db.comments.findOne(query);
-
-    if (comment) {
-      return comment;
-    }
-    return "Comment not found";
+    // const comment = db.comments.findOne(query);
+    // if (comment) {
+    //   return comment;
+    // }
+    // return "Comment not found";
   }
 
   saveComment(commentId, doneStatus) {
@@ -41,9 +39,9 @@ class Comment extends React.Component {
     const comment = this.findComment(query);
 
     if (comment === "Comment not found") {
-      db.comments.save(commentObj);
+      // db.comments.save(commentObj);
     } else {
-      db.comments.update(query, commentObj);
+      // db.comments.update(query, commentObj);
     }
   }
 

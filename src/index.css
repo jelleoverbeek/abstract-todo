@@ -13,12 +13,14 @@
   --blue: #0055ff;
   --blue-darken: #0044cc;
   --red: #b31a00;
+  --dark: #121821;
   --item: rgba(0, 32, 95, 0.05);
   --item-hover: rgba(0, 32, 95, 0.1);
   --item-active: rgba(9, 91, 255, 0.1);
-  --button: rgba(0, 32, 95, 0.05);
-  --button-hover: rgba(0, 32, 95, 0.1);
+  --button: #f2f6ff;
+  --button-hover: #e7eeff;
   --border-radius: 6px;
+  --sidebar-bg: #fcfcfd;
 }
 
 * {

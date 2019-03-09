@@ -1,5 +1,13 @@
 .container--api-token h3 {
-  margin-top: 40px;
+  margin-top: 0;
+}
+
+.container--api-token .panel {
+  margin-top: 16px;
+}
+
+.container--api-token .panel .button {
+  margin-top: 16px;
 }
 
 .form--api-token {

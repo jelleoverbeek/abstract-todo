@@ -1,11 +1,35 @@
 .Header {
   border-bottom: 1px solid var(--border);
-  padding: 12px;
-  text-align: right;
+  height: 40px;
+  padding: 8px 8px 8px 80px;
+  display: flex;
+  align-items: center;
   -webkit-app-region: drag;
+  background-color: var(--sidebar-bg);
 }
 
 .Header button {
-  margin-left: 8px;
+  margin-left: auto;
   -webkit-app-region: no-drag;
+}
+
+.Header .settings-icon {
+  margin-left: auto;
+  opacity: 0.6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Header .settings-icon:hover {
+  opacity: 1;
+}
+
+.Header .icon--active {
+  opacity: 1;
+}
+
+.Header .icon--active g {
+  fill: var(--blue);
 }

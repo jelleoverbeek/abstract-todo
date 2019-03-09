@@ -122,3 +122,9 @@ input[type="checkbox"]:focus {
   max-width: 552px;
   margin: 0 auto;
 }
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: 24px;
+}

@@ -42,6 +42,7 @@
   text-align: left;
 }
 
+.MenuItem svg,
 .MenuItem img {
   margin-left: auto;
 }

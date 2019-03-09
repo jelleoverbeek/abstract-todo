@@ -1,8 +1,8 @@
 import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
-import abstractLogo from "./img/abstract-logo.svg";
 import localforage from "localforage";
+import { ReactComponent as AbstractLogo } from "./img/abstract-logo.svg";
 
 class Comment extends React.Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class Comment extends React.Component {
         </div>
         <div className="actions">
           <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props.comment)}>
-            <img src={abstractLogo} />
+            <AbstractLogo />
           </a>
         </div>
       </div>

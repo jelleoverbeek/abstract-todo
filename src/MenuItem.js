@@ -2,7 +2,7 @@ import React from "react";
 import "./MenuItem.css";
 import Avatar from "./Avatar";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import closeIcon from "./img/close-icon.svg";
+import { ReactComponent as CloseIcon } from "./img/close-icon.svg";
 
 class MenuItem extends React.Component {
   isProjectCloseLink() {
@@ -49,7 +49,7 @@ class MenuItem extends React.Component {
 
   renderCloseIcon() {
     if (this.isProjectCloseLink()) {
-      return <img src={closeIcon} />;
+      return <CloseIcon />;
     }
   }
 

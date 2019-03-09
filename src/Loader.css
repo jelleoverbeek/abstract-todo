@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.Loader img {
+.Loader svg {
   margin-right: 16px;
 
   -webkit-animation-name: rotate;

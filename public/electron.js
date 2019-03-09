@@ -3,6 +3,13 @@ const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev");
 
+function devOptions() {
+  if (isDev) {
+    return { webSecurity: false };
+  }
+  return {};
+}
+
 let mainWindow;
 
 function createWindow() {
@@ -10,10 +17,7 @@ function createWindow() {
     width: 1280,
     height: 800,
     titleBarStyle: "hiddenInset",
-    webPreferences: {
-      webSecurity: false,
-      nodeIntegration: true
-    }
+    webPreferences: devOptions()
   });
 
   mainWindow.webContents.on("new-window", function(e, url) {
@@ -25,6 +29,7 @@ function createWindow() {
     console.log("Running in development");
     mainWindow.webContents.openDevTools();
   } else {
+    mainWindow.webContents.openDevTools();
     console.log("Running in production");
   }
 

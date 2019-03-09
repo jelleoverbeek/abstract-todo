@@ -7,6 +7,8 @@ import Header from "./Header";
 import SideMenu from "./SideMenu";
 import Comments from "./Comments";
 import Message from "./Message";
+import EmptyState from "./EmptyState";
+import Project from "./Project";
 
 class Main extends Component {
   constructor(props) {
@@ -30,6 +32,12 @@ class Main extends Component {
         } else if (response === "RateLimitError") {
           this.setState({
             abstractConnection: true,
+            error: response.name,
+            errorMessage: response.message
+          });
+        } else if (typeof response === "object" && response !== null) {
+          this.setState({
+            abstractConnection: false,
             error: response.name,
             errorMessage: response.message
           });
@@ -65,7 +73,10 @@ class Main extends Component {
     } else if (this.state.error) {
       return (
         <main>
-          <Message type="error" text={this.state.errorMessage} />
+          <div className="container--small">
+            <Message type="error" text={this.state.errorMessage} />
+            <ApiTokenForm />
+          </div>
         </main>
       );
     } else {
@@ -75,6 +86,8 @@ class Main extends Component {
           <main>
             <Route path="/api-token/" component={ApiTokenForm} />
             <Route path="/project/:projectId/branch/:branchId" component={Comments} />
+            <Route exact path="/" component={EmptyState} />
+            <Route exact path="/project/:projectId" component={Project} />
           </main>
         </div>
       );

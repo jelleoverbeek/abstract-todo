@@ -15,7 +15,6 @@ export function handleError(error) {
     errorObj.message = "Unauthorized, check if you added the API Token correctly.";
   } else if (error.name === "RateLimitError") {
     errorObj.message = "Too many requests, please wait 2 minutes and try again.";
-    alert(errorObj.message);
   }
 
   console.error(errorObj.message);
@@ -144,25 +143,3 @@ export async function getUser(userId) {
 
   return user;
 }
-
-// const projectId = req.params.projectId;
-
-// let project = getProject(projectId);
-// let comments = getComments(projectId);
-
-// Promise.all([project, comments])
-//   .then(function(values) {
-//     const projectData = {
-//       info: values[0][0],
-//       comments: values[1]
-//     };
-
-//     console.log(projectData);
-
-//     res.render("project.html", {
-//       project: projectData
-//     });
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });

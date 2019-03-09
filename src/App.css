@@ -41,6 +41,13 @@ h3 {
   font-weight: 600;
 }
 
+h4 {
+  font-size: 20px;
+  color: var(--text-80);
+  font-weight: 400;
+  margin: 0;
+}
+
 h6 {
   font-size: 12px;
   text-transform: uppercase;

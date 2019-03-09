@@ -29,7 +29,6 @@ function createWindow() {
     console.log("Running in development");
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.webContents.openDevTools();
     console.log("Running in production");
   }
 
@@ -39,9 +38,9 @@ function createWindow() {
   // Create the Application's main menu
   var template = [
     {
-      label: "Application",
+      label: "Abstract To-Dos",
       submenu: [
-        { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+        { label: "About Abstract To-Dos", selector: "orderFrontStandardAboutPanel:" },
         { type: "separator" },
         {
           label: "Quit",
@@ -61,7 +60,14 @@ function createWindow() {
         { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
         { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
         { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
+        {
+          label: "Dev tools",
+          accelerator: "CmdOrCtrl+J",
+          click() {
+            mainWindow.webContents.openDevTools();
+          }
+        }
       ]
     }
   ];

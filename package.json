@@ -37,6 +37,7 @@
   },
   "build": {
     "appId": "com.electron.abstracttodo",
+    "productName": "Abstract To-Dos",
     "mac": {
       "category": "productivity"
     },

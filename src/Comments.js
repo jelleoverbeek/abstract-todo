@@ -62,7 +62,6 @@ class Comments extends React.Component {
 
     getProject(projectId)
       .then(project => {
-        console.log(project[0]);
         this.setState({
           project: project[0],
           projectLoading: false
@@ -79,7 +78,6 @@ class Comments extends React.Component {
 
     getBranch(projectId, branchId)
       .then(branch => {
-        console.log(branch);
         this.setState({
           branch: branch,
           branchLoading: false

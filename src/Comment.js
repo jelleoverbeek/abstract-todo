@@ -8,7 +8,8 @@ class Comment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: "active"
+      status: "active",
+      checked: false
     };
   }
 
@@ -18,79 +19,55 @@ class Comment extends React.Component {
     }?commentId=${comment.id}`;
   }
 
-  findComment(query) {
-    // const comment = db.comments.findOne(query);
-    // if (comment) {
-    //   return comment;
-    // }
-    // return "Comment not found";
+  saveComment(commentId, status) {
+    localforage.setItem(commentId, status).then(response => {});
   }
 
-  saveComment(commentId, doneStatus) {
-    const commentObj = {
-      id: commentId,
-      status: doneStatus
-    };
-
-    const query = {
-      id: commentObj.id
-    };
-
-    const comment = this.findComment(query);
-
-    if (comment === "Comment not found") {
-      // db.comments.save(commentObj);
-    } else {
-      // db.comments.update(query, commentObj);
-    }
+  setCommentStatus(commentId) {
+    localforage.getItem(commentId).then(status => {
+      if (status === "done") {
+        this.setState({
+          status: status,
+          checked: true
+        });
+      } else {
+        this.setState({
+          status: "active",
+          checked: false
+        });
+      }
+    });
   }
 
-  getCommentStatus(commentId) {
-    const comment = this.findComment({ id: commentId });
-
-    if (comment !== "Comment not found") {
-      return comment.status;
-    } else {
-      return "active";
-    }
-  }
-
-  handleClick(e, _this) {
+  handleChange(e, _this) {
     const commentId = _this.props.comment.id;
 
     if (e.target.checked) {
       _this.saveComment(commentId, "done");
 
       _this.setState({
-        status: "done"
+        status: "done",
+        checked: true
       });
     } else {
       _this.saveComment(commentId, "active");
 
       _this.setState({
-        status: "active"
+        status: "active",
+        checked: false
       });
     }
   }
 
-  isDone() {
-    if (this.getCommentStatus(this.props.comment.id) === "done") {
-      return true;
-    }
-    return false;
-  }
-
   componentDidMount() {
-    this.setState({
-      status: this.getCommentStatus(this.props.comment.id)
-    });
+    this.setCommentStatus(this.props.comment.id);
   }
 
   render() {
     return (
       <div className="Comment">
         <form>
-          <input type="checkbox" defaultChecked={this.isDone()} onClick={e => this.handleClick(e, this)} />
+          <input type="checkbox" checked={this.state.checked} onChange={e => this.handleChange(e, this)} />
         </form>
         <div>
           <header>

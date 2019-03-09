@@ -17,7 +17,6 @@ class SideMenu extends React.Component {
   setProjects() {
     getAllProjects()
       .then(projects => {
-        // console.log(projects);
         this.setState({
           projects: projects
         });
@@ -28,7 +27,6 @@ class SideMenu extends React.Component {
   }
 
   setActive(project) {
-    console.log(project);
     this.setState({
       activeProjectId: project.id,
       activeProject: project

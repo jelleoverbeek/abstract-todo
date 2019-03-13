@@ -1,8 +1,8 @@
 main {
   width: 100%;
-  padding: 32px 40px;
   height: calc(100vh - 66px);
   overflow-y: auto;
+  display: flex;
 }
 
 .splitview {

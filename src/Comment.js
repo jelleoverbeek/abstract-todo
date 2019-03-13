@@ -2,6 +2,7 @@ import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
 import localforage from "localforage";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import { ReactComponent as AbstractLogo } from "./img/abstract-logo.svg";
 
 class Comment extends React.Component {
@@ -39,6 +40,11 @@ class Comment extends React.Component {
     });
   }
 
+  setActiveComment() {
+    const commentString = JSON.stringify(this.props.comment);
+    localStorage.setItem("ACTIVE_COMMENT", commentString);
+  }
+
   handleChange(e, _this) {
     const commentId = _this.props.comment.id;
 
@@ -64,8 +70,13 @@ class Comment extends React.Component {
   }
 
   render() {
+    this.setActiveComment();
     return (
-      <div className="Comment">
+      <NavLink
+        to={`/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/layer/${this.props.comment.layerId}`}
+        className="Comment"
+        activeClassName="MenuItem--active"
+      >
         <form>
           <input type="checkbox" checked={this.state.checked} onChange={e => this.handleChange(e, this)} />
         </form>
@@ -82,7 +93,7 @@ class Comment extends React.Component {
             <AbstractLogo />
           </a>
         </div>
-      </div>
+      </NavLink>
     );
   }
 }

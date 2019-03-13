@@ -143,3 +143,31 @@ export async function getUser(userId) {
 
   return user;
 }
+
+export async function getPreviewBlob(obj, sha) {
+  if (!sha) {
+    sha = obj.sha;
+  }
+
+  let preview = await abstract.previews.url({
+    projectId: obj.projectId,
+    branchId: obj.branchId,
+    fileId: obj.fileId,
+    pageId: obj.pageId,
+    layerId: obj.layerId,
+    sha: sha
+  });
+
+  return preview;
+}
+
+export async function getFileInfo(obj) {
+  const fileInfo = await abstract.files.info({
+    projectId: obj.projectId,
+    branchId: obj.branchId,
+    fileId: obj.fileId,
+    sha: obj.sha
+  });
+
+  return fileInfo;
+}

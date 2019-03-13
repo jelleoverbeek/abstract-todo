@@ -1,4 +1,6 @@
-.Comments header {
+.Comments {
+  padding: 40px;
+  width: 70%;
 }
 
 .Comments .Avatar {

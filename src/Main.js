@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Main.css";
 import SideMenu from "./SideMenu";
 import Comments from "./Comments";
@@ -12,9 +12,11 @@ class Main extends Component {
       <div className="splitview">
         <SideMenu />
         <main>
-          <Route path="/project/:projectId/branch/:branchId" component={Comments} />
-          <Route exact path="/" component={EmptyState} />
-          <Route exact path="/project/:projectId" component={Project} />
+          <Switch>
+            <Route path="/project/:projectId/branch/:branchId" component={Comments} />
+            <Route exact path="/project/:projectId" component={Project} />
+            <Route exact path="" component={EmptyState} />
+          </Switch>
         </main>
       </div>
     );

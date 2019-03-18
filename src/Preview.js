@@ -16,6 +16,23 @@ class Preview extends React.Component {
     };
   }
 
+  abstractCommentLink(props) {
+    const params = props.match.params;
+    const comment = {
+      projectId: params.projectId,
+      branchId: params.branchId,
+      fileId: params.fileId,
+      pageId: params.pageId,
+      layerId: params.layerId,
+      commitSha: params.sha,
+      id: params.commentId
+    };
+
+    return `https://app.goabstract.com/projects/${comment.projectId}/branches/${comment.branchId}/commits/${comment.commitSha}/files/${comment.fileId}/layers/${
+      comment.layerId
+    }?commentId=${comment.id}`;
+  }
+
   setPreviewImg(props) {
     const params = props.match.params;
     const filterObj = {
@@ -63,6 +80,8 @@ class Preview extends React.Component {
 
         if (error.name === "NotFoundError") {
           errorMessage = "Preview not found, is this an activity comment?";
+        } else {
+          errorMessage = error.name;
         }
 
         this.setState({
@@ -90,7 +109,9 @@ class Preview extends React.Component {
         <div className="Preview">
           <h6 className="layer-name">{this.state.layerName}</h6>
           <span className="file-name">{this.state.fileName}.sketch</span>
-          <img src={this.state.previewBlob} />
+          <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props)}>
+            <img src={this.state.previewBlob} />
+          </a>
         </div>
       );
     } else if (this.state.errorMessage) {

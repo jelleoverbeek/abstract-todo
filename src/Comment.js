@@ -42,7 +42,6 @@ class Comment extends React.Component {
   }
 
   setActiveLayerRoute() {
-    console.log(this.props);
     if (this.props.history) {
       this.props.history.push("/");
     }
@@ -81,7 +80,7 @@ class Comment extends React.Component {
             onClick={() => {
               const url = `/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/file/${this.props.comment.fileId}/page/${
                 this.props.comment.pageId
-              }/layer/${this.props.comment.layerId}/sha/${this.props.comment.commitSha}`;
+              }/layer/${this.props.comment.layerId}/sha/${this.props.comment.commitSha}/comment/${this.props.comment.id}`;
               history.push(url);
             }}
           >

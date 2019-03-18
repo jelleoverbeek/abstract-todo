@@ -1,6 +1,6 @@
 .Preview {
   border-left: 1px solid var(--border);
-  max-width: 400px;
+  max-width: 420px;
   width: 100%;
   padding: 32px;
   overflow-y: auto;
@@ -9,8 +9,6 @@
 .Preview img {
   margin-top: 16px;
   max-width: 100%;
-  max-height: 100%;
-  width: auto;
   height: auto;
 
   box-shadow: 0 2px 19px 0 rgba(8, 23, 53, 0.13);

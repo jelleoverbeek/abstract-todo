@@ -1,11 +1,13 @@
 .Preview {
   border-left: 1px solid var(--border);
-  max-width: 480px;
+  max-width: 400px;
   width: 100%;
   padding: 32px;
+  overflow-y: auto;
 }
 
 .Preview img {
+  margin-top: 16px;
   max-width: 100%;
   max-height: 100%;
   width: auto;
@@ -13,4 +15,10 @@
 
   box-shadow: 0 2px 19px 0 rgba(8, 23, 53, 0.13);
   border-radius: var(--border-radius);
+}
+
+.Preview .file-name {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--text-60);
 }

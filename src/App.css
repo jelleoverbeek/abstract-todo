@@ -50,9 +50,8 @@ h4 {
 
 h6 {
   font-size: 12px;
-  text-transform: uppercase;
-  margin-top: 32px;
-  margin-bottom: 12px;
+  font-weight: 600;
+  margin: 4px 0;
 }
 
 p {

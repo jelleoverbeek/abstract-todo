@@ -41,11 +41,6 @@ class Comment extends React.Component {
     });
   }
 
-  setActiveComment() {
-    const commentString = JSON.stringify(this.props.comment);
-    localStorage.setItem("ACTIVE_COMMENT", commentString);
-  }
-
   setActiveLayerRoute() {
     console.log(this.props);
     if (this.props.history) {
@@ -78,20 +73,16 @@ class Comment extends React.Component {
   }
 
   render() {
-    this.setActiveComment();
     return (
-      // <NavLink
-      //   to={`/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/layer/${this.props.comment.layerId}`}
-      //   className="Comment"
-      //   activeClassName="MenuItem--active"
-      // >
       <Route
         render={({ history }) => (
           <div
             className="Comment"
             onClick={() => {
-              this.setActiveComment();
-              history.push(`/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/layer/${this.props.comment.layerId}`);
+              const url = `/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/file/${this.props.comment.fileId}/page/${
+                this.props.comment.pageId
+              }/layer/${this.props.comment.layerId}/sha/${this.props.comment.commitSha}`;
+              history.push(url);
             }}
           >
             <form>
@@ -113,8 +104,6 @@ class Comment extends React.Component {
           </div>
         )}
       />
-
-      // </NavLink>
     );
   }
 }

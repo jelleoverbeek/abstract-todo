@@ -171,3 +171,16 @@ export async function getFileInfo(obj) {
 
   return fileInfo;
 }
+
+export async function getLayerInfo(obj) {
+  const layerInfo = await abstract.layers.info({
+    projectId: obj.projectId,
+    branchId: obj.branchId,
+    fileId: obj.fileId,
+    pageId: obj.pageId,
+    layerId: obj.layerId,
+    sha: obj.sha
+  });
+
+  return layerInfo;
+}

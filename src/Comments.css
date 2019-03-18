@@ -1,6 +1,7 @@
 .Comments {
   padding: 40px;
   width: 100%;
+  overflow-y: auto;
 }
 
 .Comments .Avatar {

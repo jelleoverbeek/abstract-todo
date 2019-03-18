@@ -18,7 +18,7 @@ class Main extends Component {
             <Route exact path="/project/:projectId" component={Project} />
             <Route exact path="" component={EmptyState} />
           </Switch>
-          <Route path="/project/:projectId/branch/:branchId/layer/:layerId" component={Preview} />
+          <Route path="/project/:projectId/branch/:branchId/file/:fileId/page/:pageId/layer/:layerId/sha/:sha" component={Preview} />
         </main>
       </div>
     );

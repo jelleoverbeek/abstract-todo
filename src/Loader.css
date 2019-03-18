@@ -1,9 +1,12 @@
 .Loader {
-  padding: 24px 0;
+  padding: 24px;
   font-size: 15px;
   color: var(--text-60);
   display: flex;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
 }
 
 .Loader svg {

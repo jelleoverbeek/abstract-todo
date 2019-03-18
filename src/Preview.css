@@ -1,6 +1,7 @@
 .Preview {
   border-left: 1px solid var(--border);
-  max-width: 400px;
+  max-width: 480px;
+  width: 100%;
   padding: 32px;
 }
 

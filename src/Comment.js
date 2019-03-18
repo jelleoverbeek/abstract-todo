@@ -2,7 +2,8 @@ import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
 import localforage from "localforage";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+// import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { ReactComponent as AbstractLogo } from "./img/abstract-logo.svg";
 
 class Comment extends React.Component {
@@ -45,6 +46,13 @@ class Comment extends React.Component {
     localStorage.setItem("ACTIVE_COMMENT", commentString);
   }
 
+  setActiveLayerRoute() {
+    console.log(this.props);
+    if (this.props.history) {
+      this.props.history.push("/");
+    }
+  }
+
   handleChange(e, _this) {
     const commentId = _this.props.comment.id;
 
@@ -72,28 +80,41 @@ class Comment extends React.Component {
   render() {
     this.setActiveComment();
     return (
-      <NavLink
-        to={`/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/layer/${this.props.comment.layerId}`}
-        className="Comment"
-        activeClassName="MenuItem--active"
-      >
-        <form>
-          <input type="checkbox" checked={this.state.checked} onChange={e => this.handleChange(e, this)} />
-        </form>
-        <div>
-          <header>
-            <Avatar userId={this.props.comment.userId} />
-            <address rel="author">{this.props.comment.user.name}</address>
-            <time dateTime={this.props.date}>&nbsp;—&nbsp;{this.props.comment.createdAt}</time>
-          </header>
-          <p>{this.props.comment.body}</p>
-        </div>
-        <div className="actions">
-          <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props.comment)}>
-            <AbstractLogo />
-          </a>
-        </div>
-      </NavLink>
+      // <NavLink
+      //   to={`/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/layer/${this.props.comment.layerId}`}
+      //   className="Comment"
+      //   activeClassName="MenuItem--active"
+      // >
+      <Route
+        render={({ history }) => (
+          <div
+            className="Comment"
+            onClick={() => {
+              this.setActiveComment();
+              history.push(`/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/layer/${this.props.comment.layerId}`);
+            }}
+          >
+            <form>
+              <input type="checkbox" checked={this.state.checked} onChange={e => this.handleChange(e, this)} />
+            </form>
+            <div>
+              <header>
+                <Avatar userId={this.props.comment.userId} />
+                <address rel="author">{this.props.comment.user.name}</address>
+                <time dateTime={this.props.date}>&nbsp;—&nbsp;{this.props.comment.createdAt}</time>
+              </header>
+              <p>{this.props.comment.body}</p>
+            </div>
+            <div className="actions">
+              <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props.comment)}>
+                <AbstractLogo />
+              </a>
+            </div>
+          </div>
+        )}
+      />
+
+      // </NavLink>
     );
   }
 }

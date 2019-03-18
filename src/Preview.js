@@ -8,6 +8,7 @@ class Preview extends React.Component {
     super(props);
     this.state = {
       loading: true,
+      fileName: null,
       previewBlob: null
     };
   }
@@ -28,6 +29,9 @@ class Preview extends React.Component {
 
     getFileInfo(comment)
       .then(fileInfo => {
+        this.setState({
+          fileName: fileInfo.name
+        });
         getPreviewBlob(comment, fileInfo.lastChangedAtSha)
           .then(preview => {
             this.setState({
@@ -60,7 +64,7 @@ class Preview extends React.Component {
       return (
         <div className="Preview">
           <h4>Name</h4>
-          <h6>Filename.sketch</h6>
+          <h6>{this.state.fileName}.sketch</h6>
           <img src={this.state.previewBlob} />
         </div>
       );

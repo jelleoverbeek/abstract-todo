@@ -8,18 +8,15 @@
   background-color: var(--sidebar-bg);
 }
 
-.Header button {
-  margin-left: auto;
-  -webkit-app-region: no-drag;
-}
-
 .Header .settings-icon {
   margin-left: auto;
+  margin-right: 4px;
   opacity: 0.6;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-app-region: no-drag;
 }
 
 .Header .settings-icon:hover {

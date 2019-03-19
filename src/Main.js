@@ -5,6 +5,7 @@ import SideMenu from "./SideMenu";
 import Comments from "./Comments";
 import EmptyState from "./EmptyState";
 import Project from "./Project";
+import Preview from "./Preview";
 
 class Main extends Component {
   render() {
@@ -17,6 +18,7 @@ class Main extends Component {
             <Route exact path="/project/:projectId" component={Project} />
             <Route exact path="" component={EmptyState} />
           </Switch>
+          <Route path="/project/:projectId/branch/:branchId/file/:fileId/page/:pageId/layer/:layerId/sha/:sha/" component={Preview} />
         </main>
       </div>
     );

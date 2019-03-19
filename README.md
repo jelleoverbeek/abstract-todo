@@ -1,5 +1,4 @@
-#To Dos for Abstract
-
+# To dos for Abstract
 App with an overview of comments per branch, in the form of a To-Do list. Useful for keeping track of feedback.
 
 ![Preview](https://d.pr/i/1TLpxK+)

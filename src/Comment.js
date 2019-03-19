@@ -2,8 +2,7 @@ import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
 import localforage from "localforage";
-// import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import { ReactComponent as AbstractLogo } from "./img/abstract-logo.svg";
 
 class Comment extends React.Component {
@@ -11,6 +10,7 @@ class Comment extends React.Component {
     super(props);
     this.state = {
       status: "active",
+      type: "",
       checked: false
     };
   }
@@ -41,6 +41,46 @@ class Comment extends React.Component {
     });
   }
 
+  setCommentType() {
+    if (this.props.comment.layerId && !this.props.comment.annotation) {
+      this.setState({
+        type: "layer"
+      });
+    } else if (this.props.comment.layerId && this.props.comment.annotation) {
+      this.setState({
+        type: "annotation"
+      });
+    } else {
+      this.setState({
+        type: "activity"
+      });
+    }
+  }
+
+  openInAbstractAction() {
+    return (
+      <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props.comment)}>
+        <AbstractLogo />
+      </a>
+    );
+  }
+
+  renderActions() {
+    if (this.state.type === "layer" || this.state.type === "annotation") {
+      return this.openInAbstractAction();
+    }
+  }
+
+  setCommentClassName() {
+    if (this.state.type === "layer") {
+      return "Comment Comment--layer";
+    } else if (this.state.type === "annotation") {
+      return "Comment Comment--annotation";
+    } else if (this.state.type === "activity") {
+      return "Comment Comment--activity";
+    }
+  }
+
   setActiveLayerRoute() {
     if (this.props.history) {
       this.props.history.push("/");
@@ -67,7 +107,24 @@ class Comment extends React.Component {
     }
   }
 
+  openPreviewLink() {
+    if (this.state.type !== "activity") {
+      // prettier-ignore
+      const url = 
+      `/project/${this.props.comment.projectId
+      }/branch/${this.props.comment.branchId
+      }/file/${this.props.comment.fileId
+      }/page/${this.props.comment.pageId
+      }/layer/${this.props.comment.layerId
+      }/sha/${this.props.comment.commitSha
+      }/comment/${this.props.comment.id}`;
+
+      return <NavLink to={url}>Open preview</NavLink>;
+    }
+  }
+
   componentDidMount() {
+    this.setCommentType();
     this.setCommentStatus(this.props.comment.id);
   }
 
@@ -76,12 +133,21 @@ class Comment extends React.Component {
       <Route
         render={({ history }) => (
           <div
-            className="Comment"
+            className={this.setCommentClassName()}
             onClick={() => {
-              const url = `/project/${this.props.comment.projectId}/branch/${this.props.comment.branchId}/file/${this.props.comment.fileId}/page/${
-                this.props.comment.pageId
-              }/layer/${this.props.comment.layerId}/sha/${this.props.comment.commitSha}/comment/${this.props.comment.id}`;
-              history.push(url);
+              if (this.props.comment.fileId) {
+                // prettier-ignore
+                const url = 
+                `/project/${this.props.comment.projectId
+                }/branch/${this.props.comment.branchId
+                }/file/${this.props.comment.fileId
+                }/page/${this.props.comment.pageId
+                }/layer/${this.props.comment.layerId
+                }/sha/${this.props.comment.commitSha
+                }/comment/${this.props.comment.id}`;
+
+                history.push(url);
+              }
             }}
           >
             <form>
@@ -92,14 +158,11 @@ class Comment extends React.Component {
                 <Avatar userId={this.props.comment.userId} />
                 <address rel="author">{this.props.comment.user.name}</address>
                 <time dateTime={this.props.date}>&nbsp;—&nbsp;{this.props.comment.createdAt}</time>
+                {this.state.type === "activity" ? <span className="Comment-type">&nbsp;—&nbsp;Activity comment</span> : ""}
               </header>
               <p>{this.props.comment.body}</p>
             </div>
-            <div className="actions">
-              <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props.comment)}>
-                <AbstractLogo />
-              </a>
-            </div>
+            <div className="actions">{this.renderActions()}</div>
           </div>
         )}
       />

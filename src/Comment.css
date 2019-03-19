@@ -21,8 +21,19 @@
   width: 140px;
   padding: 24px;
   opacity: 0;
-  background-image: linear-gradient(180deg, #f2f4f7 0%, rgba(242, 244, 247, 0.6) 44%, rgba(242, 244, 247, 0) 100%);
+  /* background-image: linear-gradient(180deg, #f2f4f7 0%, rgba(242, 244, 247, 0.6) 44%, rgba(242, 244, 247, 0) 100%); */
   transition: ease-in-out 0.1s all;
+}
+
+.Comment--layer,
+.Comment--annotation {
+  cursor: pointer;
+  transition: ease-in-out 0.1s all;
+}
+
+.Comment--layer:hover,
+.Comment--annotation:hover {
+  background-color: var(--item-hover);
 }
 
 .Comment:hover .actions {
@@ -54,6 +65,8 @@
   line-height: 1.5;
 }
 
-.Comment time {
+.Comment time,
+.Comment-type {
+  font-weight: normal;
   color: var(--text-40);
 }

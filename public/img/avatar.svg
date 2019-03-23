@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>avatar</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="12" cy="12" r="12"></circle>
+    </defs>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Comments" transform="translate(-449.000000, -208.000000)">
+            <g id="Group-10" transform="translate(377.000000, 184.000000)">
+                <g id="Group-3">
+                    <g id="avatar" transform="translate(72.000000, 24.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Oval" fill="#E4E8F0" xlink:href="#path-1"></use>
+                        <path d="M9.42811724,16.4223861 C7.40126438,15.4593241 6,13.3933035 6,11 C6,7.6862915 8.6862915,5 12,5 C15.3137085,5 18,7.6862915 18,11 C18,13.3933035 16.5987356,15.4593241 14.5718828,16.4223861 C17.7284743,17.4934076 20,20.4814322 20,24 C20,28.418278 16.418278,32 12,32 C7.581722,32 4,28.418278 4,24 C4,20.4814322 6.27152567,17.4934076 9.42811724,16.4223861 Z" id="Combined-Shape" fill-opacity="0.174579327" fill="#081735" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

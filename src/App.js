@@ -12,9 +12,19 @@ class App extends Component {
     super(props);
     this.state = {
       abstractConnection: false,
+      firstBoot: false,
       error: false,
       errorMessage: null
     };
+  }
+
+  isFirstBoot() {
+    const apiToken = localStorage.getItem("ABSTRACT_TOKEN");
+    if (apiToken === null) {
+      this.setState({
+        firstBoot: true
+      });
+    }
   }
 
   async checkApiConnection() {
@@ -50,31 +60,39 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.checkApiConnection();
+    const firstBoot = this.isFirstBoot();
+    if (!firstBoot) {
+      this.checkApiConnection();
+    }
   }
 
   componentDidMount() {
-    this.checkApiConnection();
+    const firstBoot = this.isFirstBoot();
+    if (!firstBoot) {
+      this.checkApiConnection();
+    }
   }
 
   render() {
-    if (this.state.error === "UnauthorizedError") {
+    if (this.state.firstBoot) {
       return (
-        <main>
+        <div className="container--small">
           <ApiTokenForm />
-          <div className="container--small">
-            <Message type="error" text={this.state.errorMessage} />
-          </div>
-        </main>
+        </div>
+      );
+    } else if (this.state.error === "UnauthorizedError") {
+      return (
+        <div className="container--small">
+          <Message type="error" text={this.state.errorMessage} />
+          <ApiTokenForm />
+        </div>
       );
     } else if (this.state.error) {
       return (
-        <main>
-          <div className="container--small">
-            <Message type="error" text={this.state.errorMessage} />
-            <ApiTokenForm />
-          </div>
-        </main>
+        <div className="container--small">
+          <Message type="error" text={this.state.errorMessage} />
+          <ApiTokenForm />
+        </div>
       );
     } else {
       return (
@@ -82,7 +100,12 @@ class App extends Component {
           <div className="App">
             <Header />
             <Switch>
-              <Route path="/api-token/" component={ApiTokenForm} />
+              <Route
+                path="/api-token/"
+                render={() => {
+                  return <ApiTokenForm title="Settings" />;
+                }}
+              />
               <Route path="/" component={Main} />
             </Switch>
           </div>

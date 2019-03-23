@@ -7,14 +7,17 @@ class Avatar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      avatarUrl: "",
+      avatarUrl: process.env.PUBLIC_URL + "/img/avatar.svg",
       name: ""
     };
   }
 
   saveUser(user) {
-    const string = JSON.stringify(user);
+    if (user.avatarUrl.includes("d=404")) {
+      user.avatarUrl = process.env.PUBLIC_URL + "/img/avatar.svg";
+    }
 
+    const string = JSON.stringify(user);
     localforage.setItem(user.id, string).then(() => {});
   }
 

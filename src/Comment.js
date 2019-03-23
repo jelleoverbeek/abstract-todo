@@ -2,8 +2,9 @@ import React from "react";
 import "./Comment.css";
 import Avatar from "./Avatar";
 import localforage from "localforage";
-import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import { ReactComponent as AbstractLogo } from "./img/abstract-logo.svg";
+import Moment from "react-moment";
 
 class Comment extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Comment extends React.Component {
   }
 
   abstractCommentLink(comment) {
+    // prettier-ignore
     return `https://app.goabstract.com/projects/${comment.projectId}/branches/${comment.branchId}/commits/${comment.commitSha}/files/${comment.fileId}/layers/${
       comment.layerId
     }?commentId=${comment.id}`;
@@ -157,8 +159,14 @@ class Comment extends React.Component {
               <header>
                 <Avatar userId={this.props.comment.userId} />
                 <address rel="author">{this.props.comment.user.name}</address>
-                <time dateTime={this.props.date}>&nbsp;—&nbsp;{this.props.comment.createdAt}</time>
-                {this.state.type === "activity" ? <span className="Comment-type">&nbsp;—&nbsp;Activity comment</span> : ""}
+
+                <span className="Comment-type">
+                  &nbsp;—&nbsp;
+                  <Moment fromNowDuring="1209600000" format="DD MMMM YYYY">
+                    {this.props.comment.createdAt}
+                  </Moment>
+                  {this.state.type === "activity" ? <span>&nbsp;—&nbsp;Activity comment</span> : ""}
+                </span>
               </header>
               <p>{this.props.comment.body}</p>
             </div>

@@ -1,3 +1,12 @@
+@keyframes annotationPulse {
+  from {
+    box-shadow: 0 0 0 8px rgba(0, 85, 255, 0.12);
+  }
+  to {
+    box-shadow: 0 0 0 16px rgba(0, 85, 255, 0.12);
+  }
+}
+
 .Preview {
   border-left: 1px solid var(--border);
   max-width: 420px;
@@ -7,7 +16,6 @@
 }
 
 .Preview img {
-  margin-top: 16px;
   max-width: 100%;
   height: auto;
 
@@ -19,4 +27,18 @@
   font-size: 12px;
   font-weight: normal;
   color: var(--text-60);
+}
+
+.preview-link {
+  margin-top: 16px;
+  position: relative;
+  display: block;
+}
+
+.annotation {
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 0 16px rgba(0, 85, 255, 0.12);
+  position: absolute;
+  border-radius: var(--border-radius);
+  animation: annotationPulse 1s ease-in-out infinite alternate;
 }

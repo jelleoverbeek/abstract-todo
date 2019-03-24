@@ -21,7 +21,6 @@
   width: 140px;
   padding: 24px;
   opacity: 0;
-  /* background-image: linear-gradient(180deg, #f2f4f7 0%, rgba(242, 244, 247, 0.6) 44%, rgba(242, 244, 247, 0) 100%); */
   transition: ease-in-out 0.1s all;
 }
 

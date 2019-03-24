@@ -117,7 +117,7 @@ class Comment extends React.Component {
       }/page/${this.props.comment.pageId
       }/layer/${this.props.comment.layerId
       }/sha/${this.props.comment.commitSha
-      }/comment/${this.props.comment.id}`;
+      }/commentId/${this.props.comment.id}`;
 
       return <NavLink to={url}>Open preview</NavLink>;
     }
@@ -144,7 +144,7 @@ class Comment extends React.Component {
                 }/page/${this.props.comment.pageId
                 }/layer/${this.props.comment.layerId
                 }/sha/${this.props.comment.commitSha
-                }/comment/${this.props.comment.id}`;
+                }/commentId/${this.props.comment.id}`;
 
                 history.push(url);
               }

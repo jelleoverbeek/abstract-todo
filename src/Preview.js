@@ -1,6 +1,6 @@
 import React from "react";
 import "./Preview.css";
-import { getPreviewBlob, getFileInfo, getLayerInfo } from "./Abstract";
+import { getPreviewBlob, getFileInfo, getLayerInfo, getComment } from "./Abstract";
 import Loader from "./Loader";
 import Message from "./Message";
 
@@ -11,6 +11,21 @@ class Preview extends React.Component {
       loading: true,
       fileName: null,
       layerName: null,
+      layerWidth: null,
+      layerHeight: null,
+      isAnnotation: false,
+      annotation: {
+        y: null,
+        x: null,
+        width: null,
+        height: null
+      },
+      annotationSquare: {
+        top: null,
+        right: null,
+        bottom: null,
+        left: null
+      },
       previewBlob: null,
       errorMessage: null
     };
@@ -31,6 +46,52 @@ class Preview extends React.Component {
     return `https://app.goabstract.com/projects/${comment.projectId}/branches/${comment.branchId}/commits/${comment.commitSha}/files/${comment.fileId}/layers/${
       comment.layerId
     }?commentId=${comment.id}`;
+  }
+
+  setAnnotationState() {
+    getComment(this.props.match.params.commentId)
+      .then(commentInfo => {
+        if (commentInfo.annotation) {
+          this.setState({
+            isAnnotation: true,
+            annotation: commentInfo.annotation
+          });
+        } else {
+          this.setState({
+            isAnnotation: false
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  calcPercentage(amount, total) {
+    return (amount / total) * 100;
+  }
+
+  setAnnotationSquare() {
+    this.state.annotationSquare.left = this.calcPercentage(this.state.annotation.x, this.state.layerWidth);
+    this.state.annotationSquare.right = 100 - this.calcPercentage(this.state.annotation.x + this.state.annotation.width, this.state.layerWidth);
+    this.state.annotationSquare.top = this.calcPercentage(this.state.annotation.y, this.state.layerHeight);
+    this.state.annotationSquare.bottom = 100 - this.calcPercentage(this.state.annotation.y + this.state.annotation.height, this.state.layerHeight);
+
+    this.state.annotationSquare.left += "%";
+    this.state.annotationSquare.right += "%";
+    this.state.annotationSquare.top += "%";
+    this.state.annotationSquare.bottom += "%";
+  }
+
+  renderAnnotation() {
+    const style = {
+      top: this.state.annotationSquare.top,
+      right: this.state.annotationSquare.right,
+      bottom: this.state.annotationSquare.bottom,
+      left: this.state.annotationSquare.left
+    };
+
+    return <div className="annotation" style={style} />;
   }
 
   setPreviewImg(props) {
@@ -57,7 +118,9 @@ class Preview extends React.Component {
         getLayerInfo(filterObj)
           .then(layerInfo => {
             this.setState({
-              layerName: layerInfo.name
+              layerName: layerInfo.name,
+              layerWidth: layerInfo.width,
+              layerHeight: layerInfo.height
             });
 
             getPreviewBlob(filterObj, layerInfo.lastChangedAtSha)
@@ -93,13 +156,19 @@ class Preview extends React.Component {
       });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.annotation !== this.state.annotation || prevState.layerWidth !== this.state.layerWidth) {
+      this.setAnnotationSquare();
+    }
+
     if (prevProps.match.url !== this.props.match.url) {
+      this.setAnnotationState();
       this.setPreviewImg(this.props);
     }
   }
 
   componentDidMount() {
+    this.setAnnotationState();
     this.setPreviewImg(this.props);
   }
 
@@ -109,8 +178,9 @@ class Preview extends React.Component {
         <div className="Preview">
           <h6 className="layer-name">{this.state.layerName}</h6>
           <span className="file-name">{this.state.fileName}.sketch</span>
-          <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props)}>
+          <a target="_blank" rel="noopener noreferrer" href={this.abstractCommentLink(this.props)} className="preview-link">
             <img src={this.state.previewBlob} />
+            {this.state.isAnnotation ? this.renderAnnotation() : ""}
           </a>
         </div>
       );

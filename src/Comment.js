@@ -162,7 +162,7 @@ class Comment extends React.Component {
 
                 <span className="Comment-type">
                   &nbsp;—&nbsp;
-                  <Moment fromNowDuring="1209600000" format="DD MMMM YYYY">
+                  <Moment fromNowDuring={1209600000} format="DD MMMM YYYY">
                     {this.props.comment.createdAt}
                   </Moment>
                   {this.state.type === "activity" ? <span>&nbsp;—&nbsp;Activity comment</span> : ""}

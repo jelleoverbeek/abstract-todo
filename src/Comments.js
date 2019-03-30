@@ -100,6 +100,7 @@ class Comments extends React.Component {
       this.setState({
         commentsLoading: true
       });
+      this.setBranch();
       this.setComments();
     }
   }

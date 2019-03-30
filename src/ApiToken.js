@@ -38,7 +38,7 @@ class ApiTokenForm extends React.Component {
   render() {
     return (
       <div className="container--small container--api-token">
-        <h1>Let’s get you up and running</h1>
+        {this.props.title ? <h1> {this.props.title} </h1> : <h1>Let’s get you up and running</h1>}
         <p className="subtitle">To load your Abstract projects the app needs an API token.</p>
 
         <div className="panel">
@@ -59,7 +59,7 @@ class ApiTokenForm extends React.Component {
               this.storeApiToken(ev, this);
             }}
           >
-            <input className="input--big api-token" type="text" placeholder="Paste API token" defaultValue={getApiToken()} />
+            <input className="input--big api-token" type="text" placeholder="Paste API token" defaultValue={getApiToken()} required />
             <PrimaryButton text="Save" />
           </form>
         </div>

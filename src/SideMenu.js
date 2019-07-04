@@ -14,9 +14,24 @@ class SideMenu extends React.Component {
     };
   }
 
+  compareProjectName(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+
+    let comparison = 0;
+    if (nameA > nameB) {
+      comparison = 1;
+    } else if (nameA < nameB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
   setProjects() {
     getAllProjects()
       .then(projects => {
+        projects = projects.sort(this.compareProjectName);
         this.setState({
           projects: projects
         });

@@ -17,6 +17,8 @@ class SideMenu extends React.Component {
   setProjects() {
     getAllProjects()
       .then(projects => {
+        projects.sort((a, b) => a.name.localeCompare(b.name));
+
         this.setState({
           projects: projects
         });
@@ -83,7 +85,11 @@ class SideMenu extends React.Component {
                   this.setActive(project);
                 }}
               >
-                <MenuItem projectId={project.id} name={project.name} projectColor={project.color} />
+                <MenuItem
+                  projectId={project.id}
+                  name={project.name}
+                  projectColor={project.color}
+                />
               </li>
             );
           })}
@@ -110,7 +116,7 @@ class SideMenu extends React.Component {
   render() {
     return (
       <aside className="SideMenu">
-        <h3>Projects</h3>
+        <h3>Active projects</h3>
         {this.renderProjectsList()}
         {this.renderBranchesList()}
       </aside>

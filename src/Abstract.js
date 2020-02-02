@@ -12,9 +12,11 @@ export function handleError(error) {
   };
 
   if (error.name === "UnauthorizedError") {
-    errorObj.message = "Unauthorized, check if you added the API Token correctly.";
+    errorObj.message =
+      "Unauthorized, check if you added the API Token correctly.";
   } else if (error.name === "RateLimitError") {
-    errorObj.message = "Too many requests, please wait 2 minutes and try again.";
+    errorObj.message =
+      "Too many requests, please wait 2 minutes and try again.";
   }
 
   console.error(errorObj.message);
@@ -32,9 +34,11 @@ export async function isConnected() {
 
 export async function getAllProjects() {
   // Query all projects
-  const projects = await abstract.projects.list().catch(error => {
-    return handleError(error);
-  });
+  const projects = await abstract.projects
+    .list({}, { filter: "active" })
+    .catch(error => {
+      return handleError(error);
+    });
 
   return projects;
 }

@@ -32,7 +32,11 @@ function createWindow() {
     console.log("Running in production");
   }
 
-  mainWindow.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
+  mainWindow.loadURL(
+    isDev
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../build/index.html")}`
+  );
   mainWindow.on("closed", () => (mainWindow = null));
 
   // Create the Application's main menu
@@ -40,7 +44,10 @@ function createWindow() {
     {
       label: "Abstract To-Dos",
       submenu: [
-        { label: "About Abstract To-Dos", selector: "orderFrontStandardAboutPanel:" },
+        {
+          label: "About Abstract To-Dos",
+          selector: "orderFrontStandardAboutPanel:"
+        },
         { type: "separator" },
         {
           label: "Quit",
@@ -60,7 +67,11 @@ function createWindow() {
         { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
         { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
         { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
+        {
+          label: "Select All",
+          accelerator: "CmdOrCtrl+A",
+          selector: "selectAll:"
+        },
         {
           label: "Dev tools",
           accelerator: "CmdOrCtrl+J",
